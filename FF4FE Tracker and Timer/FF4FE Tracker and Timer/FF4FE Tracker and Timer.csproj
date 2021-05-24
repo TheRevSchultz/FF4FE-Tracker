@@ -68,6 +68,15 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>FF4FE Tracker and Timer.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>83B352E1E0E447D686686A6A231E4E91CECB6C48</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>FF4FE Tracker and Timer_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
@@ -132,6 +141,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="FF4FE Tracker and Timer.pfx" />
+    <None Include="FF4FE Tracker and Timer_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

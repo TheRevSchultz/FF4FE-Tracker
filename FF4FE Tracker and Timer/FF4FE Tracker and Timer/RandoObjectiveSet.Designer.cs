@@ -60,6 +60,7 @@
             this.cbObjective.Location = new System.Drawing.Point(12, 22);
             this.cbObjective.Name = "cbObjective";
             this.cbObjective.Size = new System.Drawing.Size(308, 21);
+            this.cbObjective.Sorted = true;
             this.cbObjective.TabIndex = 2;
             // 
             // RandoObjectiveSet

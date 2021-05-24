@@ -113,7 +113,7 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(8, 480);
+            this.btnStart.Location = new System.Drawing.Point(8, 473);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 9;
@@ -123,7 +123,7 @@
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(89, 480);
+            this.btnStop.Location = new System.Drawing.Point(8, 502);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
             this.btnStop.TabIndex = 10;
@@ -133,9 +133,9 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(8, 515);
+            this.btnReset.Location = new System.Drawing.Point(89, 473);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(95, 23);
+            this.btnReset.Size = new System.Drawing.Size(75, 23);
             this.btnReset.TabIndex = 11;
             this.btnReset.Text = "Reset";
             this.btnReset.UseVisualStyleBackColor = true;
@@ -154,19 +154,19 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Finale Lyrics", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(367, 510);
+            this.label1.Location = new System.Drawing.Point(289, 524);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(307, 22);
+            this.label1.Size = new System.Drawing.Size(309, 19);
             this.label1.TabIndex = 13;
             this.label1.Text = "Tracker and Zeromus Icon By SchalaKitty";
             // 
             // btnReenterFlags
             // 
-            this.btnReenterFlags.Location = new System.Drawing.Point(109, 515);
+            this.btnReenterFlags.Location = new System.Drawing.Point(89, 505);
             this.btnReenterFlags.Name = "btnReenterFlags";
-            this.btnReenterFlags.Size = new System.Drawing.Size(94, 23);
+            this.btnReenterFlags.Size = new System.Drawing.Size(75, 36);
             this.btnReenterFlags.TabIndex = 14;
             this.btnReenterFlags.Text = "Re-Enter Flags";
             this.btnReenterFlags.UseVisualStyleBackColor = true;
@@ -175,11 +175,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Finale Lyrics", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label4.Location = new System.Drawing.Point(367, 459);
+            this.label4.Location = new System.Drawing.Point(289, 473);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(200, 22);
+            this.label4.Size = new System.Drawing.Size(206, 19);
             this.label4.TabIndex = 16;
             this.label4.Text = "Developed for FF4FE 4.3.1";
             // 
@@ -190,20 +190,20 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Finale Lyrics", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel1.LinkColor = System.Drawing.Color.White;
-            this.linkLabel1.Location = new System.Drawing.Point(367, 483);
+            this.linkLabel1.Location = new System.Drawing.Point(289, 497);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(264, 22);
+            this.linkLabel1.Size = new System.Drawing.Size(276, 19);
             this.linkLabel1.TabIndex = 18;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "http://schala-kitty.net/ff4fe-tracker/";
             // 
             // btnBosses
             // 
-            this.btnBosses.Location = new System.Drawing.Point(209, 480);
+            this.btnBosses.Location = new System.Drawing.Point(170, 479);
             this.btnBosses.Name = "btnBosses";
-            this.btnBosses.Size = new System.Drawing.Size(75, 58);
+            this.btnBosses.Size = new System.Drawing.Size(54, 58);
             this.btnBosses.TabIndex = 19;
             this.btnBosses.Text = "Boss Scaling Data";
             this.btnBosses.UseVisualStyleBackColor = true;
@@ -212,7 +212,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::FF4FE_Tracker_and_Timer.Properties.Resources.FreeEnt;
-            this.pictureBox1.Location = new System.Drawing.Point(304, 473);
+            this.pictureBox1.Location = new System.Drawing.Point(230, 479);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(57, 58);
             this.pictureBox1.TabIndex = 17;
