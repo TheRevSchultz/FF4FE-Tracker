@@ -9,3 +9,14 @@ D:\FF4FE Dev\Tracker\FF4FE Tracker and Timer\FF4FE Tracker and Timer\bin\Debug\F
 D:\FF4FE Dev\Tracker\FF4FE Tracker and Timer\FF4FE Tracker and Timer\obj\Debug\FF4FE Tracker and Timer.exe
 D:\FF4FE Dev\Tracker\FF4FE Tracker and Timer\FF4FE Tracker and Timer\obj\Debug\FF4FE Tracker and Timer.pdb
 D:\FF4FE Dev\Tracker\FF4FE Tracker and Timer\FF4FE Tracker and Timer\obj\Debug\FF4FE_Tracker_and_Timer.BossScaling.resources
+D:\FF4FE Dev\Tracker\FF4FE-Tracker\FF4FE Tracker and Timer\FF4FE Tracker and Timer\bin\Debug\FF4FE Tracker and Timer.exe.config
+D:\FF4FE Dev\Tracker\FF4FE-Tracker\FF4FE Tracker and Timer\FF4FE Tracker and Timer\bin\Debug\FF4FE Tracker and Timer.exe
+D:\FF4FE Dev\Tracker\FF4FE-Tracker\FF4FE Tracker and Timer\FF4FE Tracker and Timer\bin\Debug\FF4FE Tracker and Timer.pdb
+D:\FF4FE Dev\Tracker\FF4FE-Tracker\FF4FE Tracker and Timer\FF4FE Tracker and Timer\obj\Debug\FF4FE Tracker and Timer.csprojAssemblyReference.cache
+D:\FF4FE Dev\Tracker\FF4FE-Tracker\FF4FE Tracker and Timer\FF4FE Tracker and Timer\obj\Debug\FF4FE_Tracker_and_Timer.BossScaling.resources
+D:\FF4FE Dev\Tracker\FF4FE-Tracker\FF4FE Tracker and Timer\FF4FE Tracker and Timer\obj\Debug\FF4FE_Tracker_and_Timer.Tracker.resources
+D:\FF4FE Dev\Tracker\FF4FE-Tracker\FF4FE Tracker and Timer\FF4FE Tracker and Timer\obj\Debug\FF4FE_Tracker_and_Timer.Properties.Resources.resources
+D:\FF4FE Dev\Tracker\FF4FE-Tracker\FF4FE Tracker and Timer\FF4FE Tracker and Timer\obj\Debug\FF4FE Tracker and Timer.csproj.GenerateResource.cache
+D:\FF4FE Dev\Tracker\FF4FE-Tracker\FF4FE Tracker and Timer\FF4FE Tracker and Timer\obj\Debug\FF4FE Tracker and Timer.csproj.CoreCompileInputs.cache
+D:\FF4FE Dev\Tracker\FF4FE-Tracker\FF4FE Tracker and Timer\FF4FE Tracker and Timer\obj\Debug\FF4FE Tracker and Timer.exe
+D:\FF4FE Dev\Tracker\FF4FE-Tracker\FF4FE Tracker and Timer\FF4FE Tracker and Timer\obj\Debug\FF4FE Tracker and Timer.pdb

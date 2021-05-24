@@ -95,6 +95,15 @@ namespace FF4FE_Tracker_and_Timer
                                 tempobjectives.Add(Objectives[mode]);
                             }
                         }
+                        else if (tempFlag.Contains("fiends"))
+                        {
+                            tempobjectives.Add(Objectives["boss_milon"]);
+                            tempobjectives.Add(Objectives["boss_milonz"]);
+                            tempobjectives.Add(Objectives["boss_kainazzo"]);
+                            tempobjectives.Add(Objectives["boss_valvalis"]);
+                            tempobjectives.Add(Objectives["boss_rubicant"]);
+                            tempobjectives.Add(Objectives["boss_elements"]);
+                        }
                         else
                         {
                             tempobjectives.Add(Objectives[tempFlag]);
