@@ -317,7 +317,7 @@ namespace FF4FE_Tracker_and_Timer
             Objectives.Add("quest_fabul", "Defend Fabul");
             Objectives.Add("quest_supercannon", "Destroy the Super Cannon");
             Objectives.Add("quest_magma", "Drop the Magma Key into the Agart well");
-            Objectives.Add("quest_forge", "Have Kokkol Forge Legend Sword with Adamant");
+            Objectives.Add("quest_forge", "Have Kokkol Forge Legend Sword");
             Objectives.Add("quest_launchfalcon", "Launch the Falcon");
             Objectives.Add("quest_baroncastle", "Liberate Baron Castle");
             Objectives.Add("quest_toroiatreasury", "Open the Toroia treasury with the Earth Crystal");
@@ -330,9 +330,8 @@ namespace FF4FE_Tracker_and_Timer
             Objectives.Add("quest_unlocksealedcave", "Unlock the Sealed Cave");
             Objectives.Add("quest_unlocksewer", "Unlock the sewer with the Baron Key");
             Objectives.Add("quest_wakeyang", "Wake Yang with the Pan");
-            Objectives.Add("classicforge", "Have Kokkol Forge Crystal From Legend Sword and Adamant");
+            Objectives.Add("classicforge", "Have Kokkol Forge Crystal");
             Objectives.Add("classicgiant", "Required Giant of Bab-Il (No Character Reward)");
-            Objectives.Add("fiends", "Defeat ALL the Elemental Bosses");
             Objectives.Add("dkmatter", "Deliver 30 Dark Matters to Kory in Agart");
 
 

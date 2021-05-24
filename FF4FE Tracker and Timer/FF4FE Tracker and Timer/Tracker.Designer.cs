@@ -59,7 +59,7 @@
             this.clbObjectives.Location = new System.Drawing.Point(3, 23);
             this.clbObjectives.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.clbObjectives.Name = "clbObjectives";
-            this.clbObjectives.Size = new System.Drawing.Size(473, 166);
+            this.clbObjectives.Size = new System.Drawing.Size(366, 166);
             this.clbObjectives.TabIndex = 4;
             this.clbObjectives.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbObjectives_ItemCheck);
             this.clbObjectives.SelectedIndexChanged += new System.EventHandler(this.clbObjectives_SelectedIndexChanged);
@@ -74,18 +74,18 @@
             this.lbFlags.ItemHeight = 16;
             this.lbFlags.Location = new System.Drawing.Point(3, 223);
             this.lbFlags.Name = "lbFlags";
-            this.lbFlags.Size = new System.Drawing.Size(473, 244);
+            this.lbFlags.Size = new System.Drawing.Size(366, 244);
             this.lbFlags.TabIndex = 5;
             this.lbFlags.SelectedIndexChanged += new System.EventHandler(this.lbFlags_SelectedIndexChanged);
             // 
             // lblObjectives
             // 
             this.lblObjectives.AutoSize = true;
-            this.lblObjectives.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblObjectives.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblObjectives.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.lblObjectives.Location = new System.Drawing.Point(3, 4);
             this.lblObjectives.Name = "lblObjectives";
-            this.lblObjectives.Size = new System.Drawing.Size(95, 19);
+            this.lblObjectives.Size = new System.Drawing.Size(76, 15);
             this.lblObjectives.TabIndex = 6;
             this.lblObjectives.Text = "Objectives";
             // 
@@ -105,7 +105,7 @@
             this.lblTimer.AutoSize = true;
             this.lblTimer.Font = new System.Drawing.Font("Finale Lyrics", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTimer.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblTimer.Location = new System.Drawing.Point(574, 13);
+            this.lblTimer.Location = new System.Drawing.Point(436, 4);
             this.lblTimer.Name = "lblTimer";
             this.lblTimer.Size = new System.Drawing.Size(128, 54);
             this.lblTimer.TabIndex = 8;
@@ -133,7 +133,7 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(170, 480);
+            this.btnReset.Location = new System.Drawing.Point(8, 515);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(95, 23);
             this.btnReset.TabIndex = 11;
@@ -143,7 +143,7 @@
             // 
             // wbSchala
             // 
-            this.wbSchala.Location = new System.Drawing.Point(482, 63);
+            this.wbSchala.Location = new System.Drawing.Point(375, 63);
             this.wbSchala.MinimumSize = new System.Drawing.Size(20, 20);
             this.wbSchala.Name = "wbSchala";
             this.wbSchala.ScriptErrorsSuppressed = true;
@@ -156,7 +156,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Finale Lyrics", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(491, 505);
+            this.label1.Location = new System.Drawing.Point(367, 510);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(307, 22);
             this.label1.TabIndex = 13;
@@ -164,7 +164,7 @@
             // 
             // btnReenterFlags
             // 
-            this.btnReenterFlags.Location = new System.Drawing.Point(271, 480);
+            this.btnReenterFlags.Location = new System.Drawing.Point(109, 515);
             this.btnReenterFlags.Name = "btnReenterFlags";
             this.btnReenterFlags.Size = new System.Drawing.Size(94, 23);
             this.btnReenterFlags.TabIndex = 14;
@@ -177,7 +177,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Finale Lyrics", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label4.Location = new System.Drawing.Point(598, 457);
+            this.label4.Location = new System.Drawing.Point(367, 459);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(200, 22);
             this.label4.TabIndex = 16;
@@ -192,7 +192,7 @@
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Finale Lyrics", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel1.LinkColor = System.Drawing.Color.White;
-            this.linkLabel1.Location = new System.Drawing.Point(534, 479);
+            this.linkLabel1.Location = new System.Drawing.Point(367, 483);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(264, 22);
             this.linkLabel1.TabIndex = 18;
@@ -201,9 +201,9 @@
             // 
             // btnBosses
             // 
-            this.btnBosses.Location = new System.Drawing.Point(401, 480);
+            this.btnBosses.Location = new System.Drawing.Point(209, 480);
             this.btnBosses.Name = "btnBosses";
-            this.btnBosses.Size = new System.Drawing.Size(75, 50);
+            this.btnBosses.Size = new System.Drawing.Size(75, 58);
             this.btnBosses.TabIndex = 19;
             this.btnBosses.Text = "Boss Scaling Data";
             this.btnBosses.UseVisualStyleBackColor = true;
@@ -212,7 +212,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::FF4FE_Tracker_and_Timer.Properties.Resources.FreeEnt;
-            this.pictureBox1.Location = new System.Drawing.Point(781, 9);
+            this.pictureBox1.Location = new System.Drawing.Point(304, 473);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(57, 58);
             this.pictureBox1.TabIndex = 17;
@@ -224,7 +224,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(99)))));
-            this.ClientSize = new System.Drawing.Size(850, 538);
+            this.ClientSize = new System.Drawing.Size(674, 550);
             this.Controls.Add(this.btnBosses);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.pictureBox1);
