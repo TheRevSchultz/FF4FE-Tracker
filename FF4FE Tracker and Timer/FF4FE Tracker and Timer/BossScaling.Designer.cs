@@ -39,39 +39,43 @@
             // 
             // cbBosses
             // 
+            this.cbBosses.Font = new System.Drawing.Font("Rockwell", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbBosses.FormattingEnabled = true;
             this.cbBosses.Location = new System.Drawing.Point(61, 10);
             this.cbBosses.Name = "cbBosses";
-            this.cbBosses.Size = new System.Drawing.Size(177, 21);
+            this.cbBosses.Size = new System.Drawing.Size(177, 22);
             this.cbBosses.TabIndex = 0;
             this.cbBosses.SelectedIndexChanged += new System.EventHandler(this.cbBosses_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Rockwell", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label1.Location = new System.Drawing.Point(13, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(33, 13);
+            this.label1.Size = new System.Drawing.Size(38, 14);
             this.label1.TabIndex = 1;
             this.label1.Text = "Boss:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Rockwell", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(286, 13);
+            this.label2.Location = new System.Drawing.Point(279, 13);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 13);
+            this.label2.Size = new System.Drawing.Size(63, 14);
             this.label2.TabIndex = 3;
             this.label2.Text = "Location:";
             // 
             // cbLocations
             // 
+            this.cbLocations.Font = new System.Drawing.Font("Rockwell", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbLocations.FormattingEnabled = true;
             this.cbLocations.Location = new System.Drawing.Point(343, 10);
             this.cbLocations.Name = "cbLocations";
-            this.cbLocations.Size = new System.Drawing.Size(177, 21);
+            this.cbLocations.Size = new System.Drawing.Size(177, 22);
             this.cbLocations.TabIndex = 2;
             this.cbLocations.SelectedIndexChanged += new System.EventHandler(this.cbLocations_SelectedIndexChanged);
             // 

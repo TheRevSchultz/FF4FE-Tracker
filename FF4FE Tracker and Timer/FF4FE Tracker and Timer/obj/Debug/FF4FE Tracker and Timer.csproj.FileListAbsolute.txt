@@ -20,3 +20,5 @@ D:\FF4FE Dev\Tracker\FF4FE-Tracker\FF4FE Tracker and Timer\FF4FE Tracker and Tim
 D:\FF4FE Dev\Tracker\FF4FE-Tracker\FF4FE Tracker and Timer\FF4FE Tracker and Timer\obj\Debug\FF4FE Tracker and Timer.csproj.CoreCompileInputs.cache
 D:\FF4FE Dev\Tracker\FF4FE-Tracker\FF4FE Tracker and Timer\FF4FE Tracker and Timer\obj\Debug\FF4FE Tracker and Timer.exe
 D:\FF4FE Dev\Tracker\FF4FE-Tracker\FF4FE Tracker and Timer\FF4FE Tracker and Timer\obj\Debug\FF4FE Tracker and Timer.pdb
+D:\FF4FE Dev\Tracker\FF4FE-Tracker\FF4FE Tracker and Timer\FF4FE Tracker and Timer\obj\Debug\FF4FE_Tracker_and_Timer.EnterFlags.resources
+D:\FF4FE Dev\Tracker\FF4FE-Tracker\FF4FE Tracker and Timer\FF4FE Tracker and Timer\obj\Debug\FF4FE_Tracker_and_Timer.RandoObjectiveSet.resources

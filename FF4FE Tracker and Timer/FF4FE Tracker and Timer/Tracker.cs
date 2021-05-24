@@ -10,18 +10,19 @@ namespace FF4FE_Tracker_and_Timer
     {
         public Dictionary<string, string> Objectives = new Dictionary<string, string>();
         public Dictionary<string, string> Flags = new Dictionary<string, string>();
-        public static Dictionary<string, string> PresetFlags = new Dictionary<string, string>();
         public int ObjectiveCount;
         public static string feFlagString;
         public static string randoObjective;
         public static string[] randoObjectives = new string[] { };
         public static List<string> randoObjectiveList = new List<string>();
-        public static List<string> presetFlagNames = new List<string>();
         public static string tempFlag = string.Empty;
         public Stopwatch runClock = new Stopwatch();
         public bool requireAll = false;
         public string winCondition = string.Empty;
         public bool BeatZ = false;
+        public static string flags = string.Empty;
+        public static int ObjectiveNumber = 0;
+        public static string ObjectiveName = string.Empty;
 
         public Tracker()
         {
@@ -689,34 +690,20 @@ namespace FF4FE_Tracker_and_Timer
             Flags.Add("-spoil:traps", "Spoil Trap Chests");
             #endregion
 
-            #region Preset Flags
-            PresetFlags.Add("Hidden", "hidden");
-            PresetFlags.Add("Casual", "Onone Kmain Pshop Crelaxed Twild Swild Bstandard/whyburn Nnone Etoggle Gdupe/mp/warp/life/sylph/64 -spoon -vanilla:fusoya");
-            PresetFlags.Add("Intermediate", "Onone Kmain Pshop Cstandard/j:abilities Twild Sstandard Bstandard/whyburn Nnone Etoggle Gdupe/mp/warp/life/sylph -spoon");
-            PresetFlags.Add("Advanced", "Onone Kmain/summon/moon Pkey Cstandard/maybe/j:abilities Tstandard Sstandard Bstandard Nchars/key Etoggle Glife/sylph -vanilla:agility");
-            PresetFlags.Add("2021 Lali-Ho Swiss", "O1:quest_forge/2:quest_tradepink/3:quest_magnes/random:2,boss,char/req:4/win:crystal Kmain/summon/moon Pkey Cstandard/distinct:10/j:abilities/nekkie/bye Twildish/maxtier:6 Sstandard/sell:quarter Bstandard/alt:gauntlet Nchars/key Etoggle Glife/sylph -kit:basic -kit2:dwarf -noadamants -spoon -exp:noboost -vanilla:giant");
-            PresetFlags.Add("2021 Lali-Ho Bracket", "Omode:classicforge/1:quest_tradepink/2:quest_magnes/random:2,boss,char/req:4/win:crystal Kmain/summon/moon Pkey Cstandard/distinct:10/j:abilities/nekkie/nodupes/bye Tpro/maxtier:6 Sstandard/sell:0 Bstandard/alt:gauntlet Nchars/key Etoggle Glife/sylph -kit:freedom -kit2:grabbag -kit3:money -noadamants -exp:noboost -vanilla:giant");
-            PresetFlags.Add("2020 HTT3Z League - Group", "O1:quest_forge/random:3,quest/req:3/win:crystal Kmain/summon/moon Pkey Crelaxed/maybe/no:fusoya/j:abilities/bye Twildish/sparse:60 Sstandard Bstandard/alt:gauntlet Nkey Etoggle/cantrun Gwarp/life/sylph -kit:basic -noadamants -spoon -vanilla:agility");
-            PresetFlags.Add("2020 HTT3Z League - Table/Bracket", "O1:quest_forge/random:3,quest/req:3/win:crystal Kmain/summon/moon Pkey Cstandard/maybe/no:fusoya/j:abilities/permajoin Tpro/sparse:60 Spro Bstandard/alt:gauntlet Nkey Etoggle/cantrun/no:sirens Glife/sylph -kit:basic -noadamants -vanilla:agility");
-            PresetFlags.Add("2020 Fabul Gauntlet Swiss", "Orandom:5/win:crystal Kmain/summon/moon Pkey Cstandard/j:abilities Tstandard Sstandard Bstandard/alt:gauntlet Nchars/key Etoggle Glife/sylph -kit:basic -noadamants");
-            PresetFlags.Add("2020 Fabul Gauntlet Bracket", "Orandom:5/win:crystal Kmain/summon/moon Pkey Cstandard/distinct:7/j:abilities/nodupes/bye Tpro Spro/sell:quarter Bstandard/alt:gauntlet Nchars/key Etoggle Glife/sylph -kit:basic -noadamants");
-            PresetFlags.Add("Underground Racing Club Season 2", "O1:quest_forge/2:quest_tradepink/3:quest_mistcave/4:quest_waterfall/5:quest_antlionnest/6:quest_fabul/random:2,quest/req:7/win:crystal Kmain/summon/moon Pkey Cstandard/maybe/j:abilities/bye Tstandard/sparse:80 Spro/quarter Bstandard/alt:gauntlet Nchars/key Etoggle/no:sirens Glife/sylph -kit:basic -spoon -vanilla:agility");
-            PresetFlags.Add("Mysidian Jumping Club Season 2", "O1:quest_magma/2:quest_tradepink/random:2,quest,char/req:all/win:crystal Kmain/summon/moon/unsafe Pkey Cstandard/j:abilities/nodupes Twildish Sstandard/quarter Bstandard/unsafe/alt:gauntlet Nchars Etoggle Glife/sylph -kit:basic -spoon -pushbtojump");
-            PresetFlags.Add("Lunar Racing Club Season 2", "O1:quest_ribbonaltar/2:quest_masamunealtar/random:2/win:crystal Kmain/summon/moon/unsafe Pkey Cstandard/distinct:7/j:abilities/nodupes Tpro/junk Scabins/free Bstandard/alt:gauntlet Nchars/key Etoggle Glife/sylph -kit:loaded -noadamants");
             #endregion
 
-            #endregion
-
+            EnterFlags();
 
             lblTimer.Text = "00:00:00";
-            presetFlagNames.AddRange(PresetFlags.Keys);
+        }
+        private void EnterFlags()
+        {
+            Form enterFlags = new EnterFlags();
+            enterFlags.ShowDialog();
 
-            string input = string.Empty;
-            DialogResult result = ShowInputDialog(ref input);
-
-            if(result == DialogResult.OK)
+            if (flags != string.Empty)
             {
-                feFlagString = feFlagString.TrimStart(' ');
+                feFlagString = flags.TrimStart(' ');
                 feFlagString = feFlagString.TrimEnd(' ');
                 ProcessFlags();
             }
@@ -725,7 +712,6 @@ namespace FF4FE_Tracker_and_Timer
                 Application.Exit();
             }
         }
-
         private void btnStart_Click(object sender, EventArgs e)
         {
             runClock.Start();
@@ -742,9 +728,16 @@ namespace FF4FE_Tracker_and_Timer
         {
             if (clbObjectives.Items[e.Index].ToString().Contains("Random Objective"))
             {
+                Form randoObj = new RandoObjectiveSet();
+                ObjectiveNumber = e.Index;
+
+                randoObj.ShowDialog();
+
                 e.NewValue = CheckState.Unchecked;
-                ShowInputDialogObjectives(clbObjectives.Items[e.Index].ToString());
-                clbObjectives.Items[e.Index] = randoObjective;
+                if (ObjectiveNumber != 0 && ObjectiveName!= string.Empty)
+                {
+                    clbObjectives.Items[ObjectiveNumber] = ObjectiveName;
+                }
             }
             else if (clbObjectives.Items[e.Index].ToString().Contains("Defeat Zeromus"))
             {
@@ -776,169 +769,11 @@ namespace FF4FE_Tracker_and_Timer
             wbSchala.Refresh();
             ProcessFlags();
         }
-
-        private static DialogResult ShowInputDialog(ref string input)
-        {
-            string[] tempPresets = new string[] { };
-            tempPresets = presetFlagNames.ToArray();
-            System.Drawing.Size size = new System.Drawing.Size(300, 200);
-            Form inputBox = new Form();
-
-            inputBox.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            inputBox.ClientSize = size;
-            inputBox.Text = "Free Enterprise Flag Entry";
-
-            System.Windows.Forms.Label Label1 = new Label();
-            Label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            Label1.Size = new System.Drawing.Size(size.Width - 10, 25);
-            Label1.Location = new System.Drawing.Point(5, 5);
-            Label1.Text = "Enter Your Flag String Here";
-            inputBox.Controls.Add(Label1);
-
-            System.Windows.Forms.TextBox textBox = new TextBox();
-            textBox.Size = new System.Drawing.Size(size.Width - 10, 23);
-            textBox.Location = new System.Drawing.Point(5, 35);
-            textBox.Text = input;
-            inputBox.Controls.Add(textBox);
-
-            System.Windows.Forms.Label Label2 = new Label();
-            Label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            Label2.Size = new System.Drawing.Size(size.Width - 10, 25);
-            Label2.Location = new System.Drawing.Point(5, 65);
-            Label2.Text = "Choose a Preset Flag Set";
-            inputBox.Controls.Add(Label2);
-
-            System.Windows.Forms.Label Label3 = new Label();
-            Label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            Label3.Size = new System.Drawing.Size(size.Width - 10, 25);
-            Label3.Location = new System.Drawing.Point(5, 95);
-            Label3.Text = "(Manually Entered Flags Take Priority)";
-            inputBox.Controls.Add(Label3);
-            
-            System.Windows.Forms.ComboBox cbPresetFlags = new ComboBox();
-            cbPresetFlags.Size = new System.Drawing.Size(size.Width - 10, 23);
-            cbPresetFlags.Location = new System.Drawing.Point(5, 125);
-            cbPresetFlags.Items.AddRange(tempPresets);
-            cbPresetFlags.SelectedIndexChanged += cbPresetFlags_SelectedIndexChanged;
-            inputBox.Controls.Add(cbPresetFlags);
-
-
-            Button okButton = new Button();
-            okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            okButton.Name = "okButton";
-            okButton.Size = new System.Drawing.Size(75, 23);
-            okButton.Text = "&OK";
-            okButton.Location = new System.Drawing.Point(size.Width - 80 - 80, 175);
-            inputBox.Controls.Add(okButton);
-
-            Button cancelButton = new Button();
-            cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            cancelButton.Name = "cancelButton";
-            cancelButton.Size = new System.Drawing.Size(75, 23);
-            cancelButton.Text = "&Cancel";
-            cancelButton.Location = new System.Drawing.Point(size.Width - 80, 175);
-            inputBox.Controls.Add(cancelButton);
-
-            inputBox.AcceptButton = okButton;
-            inputBox.CancelButton = cancelButton;
-            
-            DialogResult result = new DialogResult();
-            
-            if (input == null)
-            {
-                textBox.Text = string.Empty;
-            }
-
-            result = inputBox.ShowDialog();
-
-            input = textBox.Text;
-            //textBox.Text = tempFlag;
-
-
-
-            if (textBox.Text != string.Empty && tempFlag != string.Empty)
-            {
-                //Set preference to manually entered flags
-                feFlagString = textBox.Text;
-            }
-            else if (textBox.Text == string.Empty && tempFlag != string.Empty)
-            {
-                feFlagString = tempFlag;
-            }
-            else if (textBox.Text != string.Empty)
-            {
-                feFlagString = textBox.Text;
-            }
-            else
-            {
-                feFlagString = PresetFlags["Casual"];
-            }
-
-            
-            return result;
-        }
-
-        private static void cbPresetFlags_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ComboBox cb = (ComboBox)sender;
-            tempFlag = PresetFlags[cb.SelectedItem.ToString()];
-
-        }
-
-        private static DialogResult ShowInputDialogObjectives(string ObjectiveName)
-        {
-            string[] tempObjectives = new string[] {};
-            tempObjectives = randoObjectiveList.ToArray<string>();
-            System.Drawing.Size size = new System.Drawing.Size(300, 70);
-            Form inputBox = new Form();
-
-            inputBox.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            inputBox.ClientSize = size;
-            inputBox.Text = "Random Objective Entry";
-
-            System.Windows.Forms.ComboBox cbRandoObjectiveList= new ComboBox();
-            cbRandoObjectiveList.Size = new System.Drawing.Size(size.Width - 10, 23);
-            cbRandoObjectiveList.Location = new System.Drawing.Point(5, 5);
-            cbRandoObjectiveList.Items.AddRange(tempObjectives);
-            inputBox.Controls.Add(cbRandoObjectiveList);
-
-            Button okButton = new Button();
-            okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            okButton.Name = "okButton";
-            okButton.Size = new System.Drawing.Size(75, 23);
-            okButton.Text = "&OK";
-            okButton.Location = new System.Drawing.Point(size.Width - 80 - 80, 39);
-            inputBox.Controls.Add(okButton);
-
-            Button cancelButton = new Button();
-            cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            cancelButton.Name = "cancelButton";
-            cancelButton.Size = new System.Drawing.Size(75, 23);
-            cancelButton.Text = "&Cancel";
-            cancelButton.Location = new System.Drawing.Point(size.Width - 80, 39);
-            inputBox.Controls.Add(cancelButton);
-
-            inputBox.AcceptButton = okButton;
-            inputBox.CancelButton = cancelButton;
-
-            DialogResult result = inputBox.ShowDialog();
-
-            if (cbRandoObjectiveList.SelectedItem == null)
-            {
-                randoObjective = ObjectiveName;
-            }
-            else
-            {
-                randoObjective = cbRandoObjectiveList.SelectedItem.ToString();
-            }
-            
-            return result;
-        }
        
         private void btnReenterFlags_Click(object sender, EventArgs e)
         {
             string input = string.Empty;
-            DialogResult result = ShowInputDialog(ref input);
+            EnterFlags();
             lblObjectives.Text = string.Empty;
 
             tParseStopwatch.Stop();
@@ -1016,6 +851,11 @@ namespace FF4FE_Tracker_and_Timer
         {
             Form BossScalingForm = new BossScaling();
             BossScalingForm.Show();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://ff4fe.com");
         }
     }
 }

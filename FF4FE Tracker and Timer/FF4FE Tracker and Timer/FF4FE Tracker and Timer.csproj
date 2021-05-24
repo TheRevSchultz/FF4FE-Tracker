@@ -80,6 +80,18 @@
     <Compile Include="BossScaling.Designer.cs">
       <DependentUpon>BossScaling.cs</DependentUpon>
     </Compile>
+    <Compile Include="EnterFlags.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnterFlags.Designer.cs">
+      <DependentUpon>EnterFlags.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RandoObjectiveSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RandoObjectiveSet.Designer.cs">
+      <DependentUpon>RandoObjectiveSet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tracker.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +102,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BossScaling.resx">
       <DependentUpon>BossScaling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnterFlags.resx">
+      <DependentUpon>EnterFlags.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RandoObjectiveSet.resx">
+      <DependentUpon>RandoObjectiveSet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tracker.resx">
       <DependentUpon>Tracker.cs</DependentUpon>
