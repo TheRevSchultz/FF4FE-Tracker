@@ -12,10 +12,11 @@ namespace FF4FE_Tracker_and_Timer
         }
         public static Dictionary<string, string> PresetFlags = new Dictionary<string, string>();
         public static List<string> presetFlagNames = new List<string>();
-        public static string hiddenFlags = "Orandom:{0},quest,boss,char/req:{1}/win:{2}";
+        public static string hiddenFlags = "Orandom:{0},quest,boss,char/req:{1}/win:{2}{3}";
         public static string hiddenFlagPart1 = "part1";
         public static string hiddenFlagPart2 = "part2";
         public static string hiddenFlagPart3 = "part3";
+        public static string hiddenFlagPart4 = "/hidden";
         public static string feFlagSetup = string.Empty;
 
 
@@ -25,6 +26,15 @@ namespace FF4FE_Tracker_and_Timer
             if (PresetFlags.Count.ToString() == "0")
             {
                 PresetFlags.Add("Hidden", "hidden");
+                PresetFlags.Add("Push B To Jump 2021 Ladder Season 2", "O1:quest_forge/2:quest_tradepink/random:1,quest,char/req:all/win:crystal Kmain/summon/moon Pkey Cstandard/j:abilities Twildish Sstandard Bstandard/alt:gauntlet Nchars Etoggle Glife/sylph -kit:basic -kit2:trap -spoon -supersmith -pushbtojump");
+                PresetFlags.Add("ZZ1 Evolved 2021 Ladder Season 2", "Orandom:5,boss,char/req:4/win:crystal Kmain/summon/moon Pkey Cstandard/distinct:5/nodupes/bye Tstandard/junk Sstandard Bstandard Nchars/key Etoggle/no:jdrops Glife/sylph -kit:cata -supersmith -vanilla:hobs");
+                PresetFlags.Add("Supermarket Sweep 2021 Ladder Season 2", "Orandom:3/req:all/win:crystal Kmain Pshop Crelaxed/j:abilities Twild Swild/free/no:apples Bstandard/whyburn Nnone Etoggle Glife/sylph -spoon");
+                PresetFlags.Add("CHero 2021 Ladder Season 2", "O1:quest_forge/2:quest_toroiatreasury/random:2/req:all/win:crystal Kmain/summon/moon Pkey Crelaxed/no:fusoya/j:abilities/nekkie/hero Tpro Sstandard Bstandard/alt:gauntlet/whichburn Nchars/key Etoggle Glife/sylph -kit:freedom -kit2:random -noadamants");
+                PresetFlags.Add("Giant % 2021 Ladder Season 2", " Omode:classicgiant/win:game Kmain Pnone Crelaxed Twild/no:j Scabins/free Bstandard/whichburn Nnone Etoggle/no:jdrops Gdupe/mp/warp/life/sylph -kit:basic -noadamants -spoon -supersmith");
+                PresetFlags.Add("Push B To Jump 2021 Ladder Season 1", "O1:quest_forge/2:quest_tradepink/random:1,quest,char/req:all/win:crystal Kmain/summon/moon Pkey Cstandard/j:abilities Twildish Sstandard Bstandard/alt:gauntlet Nchars Etoggle Glife/sylph -kit:basic -kit2:trap -spoon -supersmith -pushbtojump");
+                PresetFlags.Add("Lali-Ho Bracket 2021 Ladder Season 1", "Omode:classicforge/1:quest_tradepink/2:quest_magnes/random:2,boss,char/req:4/win:crystal Kmain/summon/moon Pkey Cstandard/distinct:10/j:abilities/nekkie/nodupes/bye Tpro/maxtier:6 Sstandard/sell:0 Bstandard/alt:gauntlet Nchars/key Etoggle Glife/sylph -kit:freedom -kit2:grabbag -kit3:money -noadamants -exp:noboost -vanilla:giant");
+                PresetFlags.Add("Supermarket Sweep 2021 Ladder Season 1", "Orandom:3/req:all/win:crystal Kmain Pshop Crelaxed/j:abilities Twild Swild/free/no:apples Bstandard/whyburn Nnone Etoggle Glife/sylph -kit:loaded -kit2:random -spoon");
+                PresetFlags.Add("CHero 2021 Ladder Season 1", "O1:quest_forge/2:quest_toroiatreasury/random:2/req:all/win:crystal Kmain/summon/moon Pkey Crelaxed/no:fusoya/j:abilities/nekkie/hero Tpro Sstandard Bstandard/alt:gauntlet/whichburn Nchars/key Etoggle Glife/sylph -kit:freedom -kit2:random -noadamants");
                 PresetFlags.Add("Casual", "Onone Kmain Pshop Crelaxed Twild Swild Bstandard/whyburn Nnone Etoggle Gdupe/mp/warp/life/sylph/64 -spoon -vanilla:fusoya");
                 PresetFlags.Add("Intermediate", "Onone Kmain Pshop Cstandard/j:abilities Twild Sstandard Bstandard/whyburn Nnone Etoggle Gdupe/mp/warp/life/sylph -spoon");
                 PresetFlags.Add("Advanced", "Onone Kmain/summon/moon Pkey Cstandard/maybe/j:abilities Tstandard Sstandard Bstandard Nchars/key Etoggle Glife/sylph -vanilla:agility");
@@ -70,12 +80,12 @@ namespace FF4FE_Tracker_and_Timer
             {
                 if (hiddenFlagPart1 != "part1" && hiddenFlagPart2 != "part2" && hiddenFlagPart3 != "part3")
                 {
-                    hiddenFlags = String.Format(hiddenFlags, hiddenFlagPart1, hiddenFlagPart2, hiddenFlagPart3);
+                    hiddenFlags = String.Format(hiddenFlags, hiddenFlagPart1, hiddenFlagPart2, hiddenFlagPart3, hiddenFlagPart4);
                     txtFlags.Text = hiddenFlags;
                 }
                 else 
                 { 
-                    txtFlags.Text = string.Empty; 
+                    txtFlags.Text = "(hidden)"; 
                 }
             }
             else
@@ -110,7 +120,15 @@ namespace FF4FE_Tracker_and_Timer
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            Tracker.flags = txtFlags.Text;
+            if (cbPresetFlags.SelectedItem.ToString() == "Hidden")
+            {
+                UpdateHiddenFlags();
+                Tracker.flags = txtFlags.Text;
+            }
+            else
+            {
+                Tracker.flags = txtFlags.Text;
+            }
             this.Close();
         }
 

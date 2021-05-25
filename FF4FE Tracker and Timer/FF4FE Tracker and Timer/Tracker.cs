@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace FF4FE_Tracker_and_Timer
 {
@@ -23,6 +24,14 @@ namespace FF4FE_Tracker_and_Timer
         public static string flags = string.Empty;
         public static int ObjectiveNumber = 0;
         public static string ObjectiveName = string.Empty;
+        public static List<String> tempflags = new List<String>();
+        public static string flagSeries = string.Empty;
+        public static List<string> questObjectives = new List<string>();
+        public static List<string> bossObjectives = new List<string>();
+        public static List<string> charObjectives = new List<string>();
+        public static List<String> tempobjectives = new List<String>();
+        public static int randoObjectiveCount;
+        public static string flagvalue = string.Empty;
 
         public Tracker()
         {
@@ -43,184 +52,49 @@ namespace FF4FE_Tracker_and_Timer
             string[] feFlags = ParseFlags(feFlagString);
             string[] feObjectives = new string[] { };
             string[] feFlagsParsed = new string[] { };
-            List<String> tempobjectives = new List<String>();
-            List<String> tempflags = new List<String>();
-            string flagvalue = string.Empty;
-            string flagSeries = string.Empty;
 
             foreach (string flag in feFlags)
             {
-                List<string> questObjectives = new List<string>();
-                List<string> bossObjectives = new List<string>();
-                List<string> charObjectives = new List<string>();
-                int randoObjectiveCount;
                 string tempflag = string.Empty;
+
+                if (flag.Substring(0, 1).Where(char.IsUpper).Any())
+                {
+                    flagSeries = flag.Substring(0, 1);
+                }
 
                 if (flag.Contains("hidden"))
                 {
-                    tempflags.Add("hidden");
-                    tempobjectives.Add("hidden");
-                    lblObjectives.Text = "Hidden Objectives";
+                    ProcessForHidden(flag);
                 }
                 else
                 {
-                    if (flag.Substring(0, 1).Where(char.IsUpper).Any())
+                    if( flagSeries == "K" || flagSeries =="B")
                     {
-                        flagSeries = flag.Substring(0, 1);
+                        ProcessForUnsafe(flag);
+                        ProcessOtherFlags(flag);
                     }
-
-                    if (flagSeries == "B" && flag == "unsafe")
+                    else if (flagSeries == "O")
                     {
-                        tempflags.Add("Unsafe Bosses");
+                        ProcessForObjectives(flag);
                     }
-                    if (flagSeries == "K" && flag == "unsafe")
+                    else if (flagSeries == "C")
                     {
-                        tempflags.Add("Unsafe Key Item Placement");
-                    }
-
-                    if (flag == "Onone")
-                    {
-                        tempobjectives.Add("No Objectives In Seed");
-                    }
-                    else if (flag.Contains("Omode"))
-                    {
-                        tempFlag = flag.Substring(flag.IndexOf(@":") + 1);
-
-                        if (tempFlag.Contains(","))
+                        if (flag.Length >= 5 && flag.Substring(0, 5) == "only:")
                         {
-                            List<string> classicmodes = new List<string>();
-
-                            classicmodes = tempFlag.Split(',').ToList();
-                            foreach (string mode in classicmodes)
-                            {
-                                tempobjectives.Add(Objectives[mode]);
-                            }
+                            ProcessForOnly(flag);
                         }
-                        else if (tempFlag.Contains("fiends"))
+                        else if (flag.Length >= 5 && flag.Substring(0, 3) == "no:")
                         {
-                            tempobjectives.Add(Objectives["boss_milon"]);
-                            tempobjectives.Add(Objectives["boss_milonz"]);
-                            tempobjectives.Add(Objectives["boss_kainazzo"]);
-                            tempobjectives.Add(Objectives["boss_valvalis"]);
-                            tempobjectives.Add(Objectives["boss_rubicant"]);
-                            tempobjectives.Add(Objectives["boss_elements"]);
+                            ProcessForRemovedCharacters(flag);
                         }
                         else
                         {
-                            tempobjectives.Add(Objectives[tempFlag]);
+                            ProcessOtherFlags(flag);
                         }
-                    }
-                    else if ((flag.Length >= 6 && flag.Substring(0, 6) == "random") || ((flag.Length >= 7 && flag.Substring(0, 7) == "Orandom")))
-                    {
-                        int count = 1;
-                        if (flag.Substring(0, 1) == "O")
-                        {
-                            randoObjectiveCount = Int32.Parse(flag.Substring(8, 1));
-                        }
-                        else
-                        {
-                            randoObjectiveCount = Int32.Parse(flag.Substring(7, 1));
-                        }
-                        while (count <= randoObjectiveCount)
-                        {
-                            tempobjectives.Add("Random Objective " + count.ToString());
-                            count++;
-                        }
-
-                        List<string> objectiveFlags = new List<string>();
-
-                        objectiveFlags = flag.Split(',').ToList();
-                        questObjectives = Objectives.Where(d => d.Key.Contains("quest")).ToDictionary(d => d.Key, d => d.Value).Values.ToList();
-                        charObjectives = Objectives.Where(d => d.Key.Contains("char")).ToDictionary(d => d.Key, d => d.Value).Values.ToList();
-                        bossObjectives = Objectives.Where(d => d.Key.Contains("boss")).ToDictionary(d => d.Key, d => d.Value).Values.ToList();
-
-                        foreach (string objective in objectiveFlags)
-                        {
-                            if (objective.Contains("quest"))
-                            {
-                                randoObjectiveList.AddRange(questObjectives);
-                            }
-                            else if (objective.Contains("char"))
-                            {
-                                randoObjectiveList.AddRange(charObjectives);
-                            }
-                            else if (objective.Contains("boss"))
-                            {
-                                randoObjectiveList.AddRange(bossObjectives);
-                            }
-                        }
-                    }
-                    else if (flag.Substring(0, 2) == "O1" || flag.Substring(0, 1).All(char.IsDigit))
-                    {
-                        if (flag.Substring(0, 2) != "64")
-                        {
-                            flagvalue = flag.Substring(flag.IndexOf(@":") + 1);
-                            tempobjectives.Add(Objectives[flagvalue]);
-                        }
-                    }
-                    else if (flag.Length >= 3 && flag.Substring(0, 3) == "req")
-                    {
-                        if (flag.Substring(flag.IndexOf(@":") + 1) == "all")
-                        {
-                            ObjectiveCount = tempobjectives.Count;
-                            requireAll = true;
-                        }
-                        else
-                        {
-                            ObjectiveCount = Int32.Parse(flag.Substring(flag.IndexOf(@":") + 1));
-                        }
-                        lblObjectives.Text = string.Format("Objectives: Require {0} ", flag.Substring(flag.IndexOf(@":") + 1));
-                    }
-                    else if (flag == "win:crystal")
-                    {
-                        tempobjectives.Add("Defeat Zeromus");
-                        winCondition = "Zeromus";
-                        lblObjectives.Text = string.Format("{0} to {1} ", lblObjectives.Text, "get the Crystal and defeat Zeromus.");
-                    }
-                    else if (flag == "win:game")
-                    {
-                        winCondition = "Game";
-                        lblObjectives.Text = string.Format("{0} to {1} ", lblObjectives.Text, "win the game.");
-                    }
-                    else if (flag.Length >= 5 && flag.Substring(0, 5) == "only:")
-                    {
-                        List<string> tempConly = new List<string>();
-                        List<string> parsedConly = new List<string>();
-                        tempConly = flag.Split(',').ToList();
-
-                        foreach (string only in tempConly)
-                        {
-                            if (only.Length >= 5 && only.Substring(0, 5) == "only:")
-                            {
-                                parsedConly.Add(Flags[only]);
-                            }
-                            else
-                            {
-                                parsedConly.Add(Flags["only:" + only]);
-                            }
-                        }
-                        tempflags.AddRange(parsedConly);
                     }
                     else
                     {
-                        if (flag.Contains("-vanilla:"))
-                        {
-                            List<String> tempvanillaflags = new List<String>();
-                            tempvanillaflags = flag.Split(',').ToList<String>();
-
-                            foreach (string vanilla in tempvanillaflags)
-                            {
-                                tempflags.Add(Flags[vanilla]);
-                            }
-                        }
-                        else
-                        {
-                            if (flag != "unsafe")
-                            {
-                                tempflags.Add(Flags[flag]);
-                            }
-
-                        }
+                        ProcessOtherFlags(flag);
                     }
                 }
             }
@@ -232,7 +106,198 @@ namespace FF4FE_Tracker_and_Timer
             lbFlags.Items.AddRange(feFlagsParsed);
         }
 
+        private void ProcessForHidden(string flag)
+        {
+            if (feFlagString == "(hidden)")
+            {
+                tempflags.Add(Flags[flag]);
+                lblObjectives.Text = "Hidden Objectives";
+            }
+            else
+            {
+                tempflags.Add(Flags[flag]);
+            }
+        }
 
+        private void ProcessForUnsafe(string flag)
+        {
+            if (flagSeries == "B" && flag == "unsafe")
+            {
+                tempflags.Add("Unsafe Bosses");
+            }
+            if (flagSeries == "K" && flag == "unsafe")
+            {
+                tempflags.Add("Unsafe Key Item Placement");
+            }
+        }
+
+        private void ProcessForObjectives(string flag)
+        {
+            if (flag == "Onone")
+            {
+                tempobjectives.Add("No Objectives In Seed");
+            }
+            else if (flag.Contains("Omode"))
+            {
+                tempFlag = flag.Substring(flag.IndexOf(@":") + 1);
+
+                if (tempFlag.Contains(","))
+                {
+                    List<string> classicmodes = new List<string>();
+
+                    classicmodes = tempFlag.Split(',').ToList();
+                    foreach (string mode in classicmodes)
+                    {
+                        tempobjectives.Add(Objectives[mode]);
+                    }
+                }
+                else if (tempFlag.Contains("fiends"))
+                {
+                    tempobjectives.Add(Objectives["boss_milon"]);
+                    tempobjectives.Add(Objectives["boss_milonz"]);
+                    tempobjectives.Add(Objectives["boss_kainazzo"]);
+                    tempobjectives.Add(Objectives["boss_valvalis"]);
+                    tempobjectives.Add(Objectives["boss_rubicant"]);
+                    tempobjectives.Add(Objectives["boss_elements"]);
+                }
+                else
+                {
+                    tempobjectives.Add(Objectives[tempFlag]);
+                }
+            }
+            else if ((flag.Length >= 6 && flag.Substring(0, 6) == "random") || ((flag.Length >= 7 && flag.Substring(0, 7) == "Orandom")))
+            {
+                int count = 1;
+                if (flag.Substring(0, 1) == "O")
+                {
+                    randoObjectiveCount = Int32.Parse(flag.Substring(8, 1));
+                }
+                else
+                {
+                    randoObjectiveCount = Int32.Parse(flag.Substring(7, 1));
+                }
+                while (count <= randoObjectiveCount)
+                {
+                    tempobjectives.Add("Random Objective " + count.ToString());
+                    count++;
+                }
+
+                List<string> objectiveFlags = new List<string>();
+
+                objectiveFlags = flag.Split(',').ToList();
+                questObjectives = Objectives.Where(d => d.Key.Contains("quest")).ToDictionary(d => d.Key, d => d.Value).Values.ToList();
+                charObjectives = Objectives.Where(d => d.Key.Contains("char")).ToDictionary(d => d.Key, d => d.Value).Values.ToList();
+                bossObjectives = Objectives.Where(d => d.Key.Contains("boss")).ToDictionary(d => d.Key, d => d.Value).Values.ToList();
+
+                foreach (string objective in objectiveFlags)
+                {
+                    if (objective.Contains("quest"))
+                    {
+                        randoObjectiveList.AddRange(questObjectives);
+                    }
+                    else if (objective.Contains("char"))
+                    {
+                        randoObjectiveList.AddRange(charObjectives);
+                    }
+                    else if (objective.Contains("boss"))
+                    {
+                        randoObjectiveList.AddRange(bossObjectives);
+                    }
+                }
+            }
+            else if (flag.Substring(0, 2) == "O1" || flag.Substring(0, 1).All(char.IsDigit))
+            {
+                if (flag.Substring(0, 2) != "64")
+                {
+                    flagvalue = flag.Substring(flag.IndexOf(@":") + 1);
+                    tempobjectives.Add(Objectives[flagvalue]);
+                }
+            }
+            else if (flag.Length >= 3 && flag.Substring(0, 3) == "req")
+            {
+                if (flag.Substring(flag.IndexOf(@":") + 1) == "all")
+                {
+                    ObjectiveCount = tempobjectives.Count;
+                    requireAll = true;
+                }
+                else
+                {
+                    ObjectiveCount = Int32.Parse(flag.Substring(flag.IndexOf(@":") + 1));
+                }
+                lblObjectives.Text = string.Format("Objectives: Require {0} ", flag.Substring(flag.IndexOf(@":") + 1));
+            }
+            else if (flag == "win:crystal")
+            {
+                tempobjectives.Add("Defeat Zeromus");
+                winCondition = "Zeromus";
+                lblObjectives.Text = string.Format("{0} to {1} ", lblObjectives.Text, "get the Crystal and defeat Zeromus.");
+            }
+            else if (flag == "win:game")
+            {
+                winCondition = "Game";
+                lblObjectives.Text = string.Format("{0} to {1} ", lblObjectives.Text, "win the game.");
+            }
+        }
+
+        private void ProcessForOnly(string flag)
+        {
+            List<string> tempConly = new List<string>();
+            List<string> parsedConly = new List<string>();
+            tempConly = flag.Split(',').ToList();
+
+            foreach (string only in tempConly)
+            {
+                if (only.Length >= 5 && only.Substring(0, 5) == "only:")
+                {
+                    parsedConly.Add(Flags[only]);
+                }
+                else
+                {
+                    parsedConly.Add(Flags["only:" + only]);
+                }
+            }
+            tempflags.AddRange(parsedConly);
+        }
+        private void ProcessForRemovedCharacters(string flag)
+        {
+            List<string> tempCno = new List<string>();
+            List<string> parsedCno = new List<string>();
+            tempCno = flag.Split(',').ToList();
+
+            foreach (string no in tempCno)
+            {
+                if (no.Length >= 5 && no.Substring(0, 3) == "no:")
+                {
+                    parsedCno.Add(Flags[no]);
+                }
+                else
+                {
+                    parsedCno.Add(Flags["no:" + no]);
+                }
+            }
+            tempflags.AddRange(parsedCno);
+        }
+
+        private void ProcessOtherFlags(string flag)
+    {
+        if (flag.Contains("-vanilla:"))
+        {
+            List<String> tempvanillaflags = new List<String>();
+            tempvanillaflags = flag.Split(',').ToList<String>();
+
+            foreach (string vanilla in tempvanillaflags)
+            {
+                tempflags.Add(Flags[vanilla]);
+            }
+        }
+        else
+        {
+            if (flag != "unsafe")
+            {
+                tempflags.Add(Flags[flag]);
+            }
+        }
+    }
         #endregion
         
         private void Tracker_Load(object sender, EventArgs e)
@@ -339,6 +404,7 @@ namespace FF4FE_Tracker_and_Timer
 
             #region Add Flag Definitions
             Flags.Add("hidden", "Hidden Flags");
+            Flags.Add("(hidden)", "Hidden Flags");
 
             #region Character Flags
             Flags.Add("Cvanilla", "No Character Randomization");
@@ -381,18 +447,18 @@ namespace FF4FE_Tracker_and_Timer
             Flags.Add("j:abilities", "Japan Edition Abilities");
             Flags.Add("j:spells, abilities", "Japan Edition Spells and Abilities");
             Flags.Add("j:spells", "Japan Edition Spells");
-            Flags.Add("cecil", "Exclude Character: Cecil");
-            Flags.Add("rosa", "Exclude Character: Rosa");
-            Flags.Add("kain", "Exclude Character: Kain");
-            Flags.Add("rydia", "Exclude Character: Rydia");
-            Flags.Add("palom", "Exclude Character: Palom");
-            Flags.Add("porom", "Exclude Character: Porom");
-            Flags.Add("tellah", "Exclude Character: Tellah");
-            Flags.Add("edward", "Exclude Character: Edward");
-            Flags.Add("yang", "Exclude Character: Yang");
-            Flags.Add("edge", "Exclude Character: Edge");
-            Flags.Add("fusoya", "Exclude Character: FuSoYa");
-            Flags.Add("cid", "Exclude Character: Cid");
+            //Flags.Add("cecil", "Exclude Character: Cecil");
+            //Flags.Add("rosa", "Exclude Character: Rosa");
+            //Flags.Add("kain", "Exclude Character: Kain");
+            //Flags.Add("rydia", "Exclude Character: Rydia");
+            //Flags.Add("palom", "Exclude Character: Palom");
+            //Flags.Add("porom", "Exclude Character: Porom");
+            //Flags.Add("tellah", "Exclude Character: Tellah");
+            //Flags.Add("edward", "Exclude Character: Edward");
+            //Flags.Add("yang", "Exclude Character: Yang");
+            //Flags.Add("edge", "Exclude Character: Edge");
+            //Flags.Add("fusoya", "Exclude Character: FuSoYa");
+            //Flags.Add("cid", "Exclude Character: Cid");
             Flags.Add("only:cecil", "Include Character: Cecil");
             Flags.Add("only:rosa", "Include Character: Rosa");
             Flags.Add("only:kain", "Include Character: Kain");
@@ -405,18 +471,18 @@ namespace FF4FE_Tracker_and_Timer
             Flags.Add("only:edge", "Include Character: Edge");
             Flags.Add("only:fusoya", "Include Character: FuSoYa");
             Flags.Add("only:cid", "Include Character: Cid");
-            Flags.Add("no:cecil", "Include Character: Cecil");
-            Flags.Add("no:rosa", "Include Character: Rosa");
-            Flags.Add("no:kain", "Include Character: Kain");
-            Flags.Add("no:rydia", "Include Character: Rydia");
-            Flags.Add("no:palom", "Include Character: Palom");
-            Flags.Add("no:porom", "Include Character: Porom");
-            Flags.Add("no:tellah", "Include Character: Tellah");
-            Flags.Add("no:edward", "Include Character: Edward");
-            Flags.Add("no:yang", "Include Character: Yang");
-            Flags.Add("no:edge", "Include Character: Edge");
-            Flags.Add("no:fusoya", "Include Character: FuSoYa");
-            Flags.Add("no:cid", "Include Character: Cid");
+            Flags.Add("no:cecil", "Exclude Character: Cecil");
+            Flags.Add("no:rosa", "Exclude Character: Rosa");
+            Flags.Add("no:kain", "Exclude Character: Kain");
+            Flags.Add("no:rydia", "Exclude Character: Rydia");
+            Flags.Add("no:palom", "Exclude Character: Palom");
+            Flags.Add("no:porom", "Exclude Character: Porom");
+            Flags.Add("no:tellah", "Exclude Character: Tellah");
+            Flags.Add("no:edward", "Exclude Character: Edward");
+            Flags.Add("no:yang", "Exclude Character: Yang");
+            Flags.Add("no:edge", "Exclude Character: Edge");
+            Flags.Add("no:fusoya", "Exclude Character: FuSoYa");
+            Flags.Add("no:cid", "Exclude Character: Cid");
             Flags.Add("nekkie", "Random Low Level Weapon, No Armor (Nekkie!)");
             #endregion
 
@@ -694,6 +760,7 @@ namespace FF4FE_Tracker_and_Timer
             EnterFlags();
 
             lblTimer.Text = "00:00:00";
+            lblVersion.Text = "Tracker Version: " + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
         }
         private void EnterFlags()
         {
@@ -766,28 +833,40 @@ namespace FF4FE_Tracker_and_Timer
             lbFlags.Items.Clear();
             BeatZ = false;
             wbSchala.Refresh();
+            ResetGlobalFlags();
             ProcessFlags();
         }
        
         private void btnReenterFlags_Click(object sender, EventArgs e)
         {
-            string input = string.Empty;
-            EnterFlags();
+            clbObjectives.Items.Clear();
+            lbFlags.Items.Clear();
+            BeatZ = false;
             lblObjectives.Text = string.Empty;
+            ResetGlobalFlags();
 
             tParseStopwatch.Stop();
             runClock.Stop();
             runClock.Reset();
-
             lblTimer.Text = "00:00:00";
-            clbObjectives.Items.Clear();
-            lbFlags.Items.Clear();
-            BeatZ = false;
 
             wbSchala.Refresh();
-
-            ProcessFlags();
+            
+            EnterFlags();
         }
+
+        private void ResetGlobalFlags()
+        {
+            ObjectiveName = string.Empty;
+            tempflags.Clear();
+            flagSeries = string.Empty;
+            questObjectives.Clear();
+            bossObjectives.Clear();
+            charObjectives.Clear();
+            tempobjectives.Clear();
+            randoObjectiveCount = 0;
+            flagvalue = string.Empty;
+    }
 
         private void lbFlags_SelectedIndexChanged(object sender, EventArgs e)
         {

@@ -46,6 +46,7 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.btnBosses = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblVersion = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -105,7 +106,7 @@
             this.lblTimer.AutoSize = true;
             this.lblTimer.Font = new System.Drawing.Font("Finale Lyrics", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTimer.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblTimer.Location = new System.Drawing.Point(436, 4);
+            this.lblTimer.Location = new System.Drawing.Point(436, 10);
             this.lblTimer.Name = "lblTimer";
             this.lblTimer.Size = new System.Drawing.Size(128, 54);
             this.lblTimer.TabIndex = 8;
@@ -156,7 +157,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(289, 524);
+            this.label1.Location = new System.Drawing.Point(289, 523);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(309, 19);
             this.label1.TabIndex = 13;
@@ -177,7 +178,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label4.Location = new System.Drawing.Point(289, 473);
+            this.label4.Location = new System.Drawing.Point(289, 475);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(206, 19);
             this.label4.TabIndex = 16;
@@ -192,7 +193,7 @@
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel1.LinkColor = System.Drawing.Color.White;
-            this.linkLabel1.Location = new System.Drawing.Point(289, 497);
+            this.linkLabel1.Location = new System.Drawing.Point(289, 499);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(276, 19);
             this.linkLabel1.TabIndex = 18;
@@ -219,12 +220,24 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // lblVersion
+            // 
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVersion.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblVersion.Location = new System.Drawing.Point(375, 452);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(65, 19);
+            this.lblVersion.TabIndex = 20;
+            this.lblVersion.Text = "Version";
+            // 
             // Tracker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(99)))));
             this.ClientSize = new System.Drawing.Size(674, 550);
+            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.btnBosses);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.pictureBox1);
@@ -267,6 +280,7 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Button btnBosses;
         public System.Windows.Forms.CheckedListBox clbObjectives;
+        private System.Windows.Forms.Label lblVersion;
     }
 }
 
