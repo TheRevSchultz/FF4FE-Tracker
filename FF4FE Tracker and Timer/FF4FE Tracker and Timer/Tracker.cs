@@ -22,7 +22,7 @@ namespace FF4FE_Tracker_and_Timer
         public string winCondition = string.Empty;
         public bool BeatZ = false;
         public static string flags = string.Empty;
-        public static int ObjectiveNumber = 0;
+        public static int ObjectiveNumber = -1;
         public static string ObjectiveName = string.Empty;
         public static List<String> tempflags = new List<String>();
         public static string flagSeries = string.Empty;
@@ -806,7 +806,7 @@ namespace FF4FE_Tracker_and_Timer
                 randoObj.ShowDialog();
 
                 e.NewValue = CheckState.Unchecked;
-                if (ObjectiveNumber != 0 && ObjectiveName!= string.Empty)
+                if (ObjectiveNumber != -1 && ObjectiveName!= string.Empty)
                 {
                     clbObjectives.Items[ObjectiveNumber] = ObjectiveName;
                 }
