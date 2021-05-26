@@ -203,6 +203,12 @@ namespace FF4FE_Tracker_and_Timer
                     {
                         randoObjectiveList.AddRange(bossObjectives);
                     }
+                    else
+                    {
+                        randoObjectiveList.AddRange(questObjectives);
+                        randoObjectiveList.AddRange(charObjectives);
+                        randoObjectiveList.AddRange(bossObjectives);
+                    }
                 }
             }
             else if (flag.Substring(0, 2) == "O1" || flag.Substring(0, 1).All(char.IsDigit))
