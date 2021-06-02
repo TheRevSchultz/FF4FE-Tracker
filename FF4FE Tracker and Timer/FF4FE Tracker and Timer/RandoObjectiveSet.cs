@@ -21,6 +21,8 @@ namespace FF4FE_Tracker_and_Timer
         {
             string[] objectiveList = new string[] { };
 
+            cbObjective.Items.Clear();
+
             objectiveList = Tracker.randoObjectiveList.ToArray<string>();
 
             cbObjective.Items.AddRange(objectiveList);

@@ -120,10 +120,17 @@ namespace FF4FE_Tracker_and_Timer
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (cbPresetFlags.SelectedItem.ToString() == "Hidden")
+            if (cbPresetFlags.SelectedItem != null)
             {
-                UpdateHiddenFlags();
-                Tracker.flags = txtFlags.Text;
+                if (cbPresetFlags.SelectedItem.ToString() == "Hidden")
+                {
+                    UpdateHiddenFlags();
+                    Tracker.flags = txtFlags.Text;
+                }
+                else
+                {
+                    Tracker.flags = txtFlags.Text;
+                }
             }
             else
             {

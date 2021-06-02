@@ -53,6 +53,8 @@ namespace FF4FE_Tracker_and_Timer
             string[] feObjectives = new string[] { };
             string[] feFlagsParsed = new string[] { };
 
+            randoObjectiveList.Clear();
+
             foreach (string flag in feFlags)
             {
                 string tempflag = string.Empty;
@@ -193,21 +195,57 @@ namespace FF4FE_Tracker_and_Timer
                 {
                     if (objective.Contains("quest"))
                     {
-                        randoObjectiveList.AddRange(questObjectives);
+                        foreach (string quest in questObjectives)
+                        {
+                            if (!randoObjectiveList.Contains(quest))
+                            {
+                                randoObjectiveList.Add(quest);
+                            }
+                        }
                     }
                     else if (objective.Contains("char"))
                     {
-                        randoObjectiveList.AddRange(charObjectives);
+                        foreach (string character in charObjectives)
+                        {
+                            if (!randoObjectiveList.Contains(character))
+                            {
+                                randoObjectiveList.Add(character);
+                            }
+                        }
                     }
                     else if (objective.Contains("boss"))
                     {
-                        randoObjectiveList.AddRange(bossObjectives);
+                        foreach (string boss in bossObjectives)
+                        {
+                            if (!randoObjectiveList.Contains(boss))
+                            {
+                                randoObjectiveList.Add(boss);
+                            }
+                        }
                     }
                     else
                     {
-                        randoObjectiveList.AddRange(questObjectives);
-                        randoObjectiveList.AddRange(charObjectives);
-                        randoObjectiveList.AddRange(bossObjectives);
+                        foreach (string quest in questObjectives)
+                        {
+                            if (!randoObjectiveList.Contains(quest))
+                            {
+                                randoObjectiveList.Add(quest);
+                            }
+                        }
+                        foreach (string character in charObjectives)
+                        {
+                            if (!randoObjectiveList.Contains(character))
+                            {
+                                randoObjectiveList.Add(character);
+                            }
+                        }
+                        foreach (string boss in bossObjectives)
+                        {
+                            if (!randoObjectiveList.Contains(boss))
+                            {
+                                randoObjectiveList.Add(boss);
+                            }
+                        }
                     }
                 }
             }
