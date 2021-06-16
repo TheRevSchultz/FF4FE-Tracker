@@ -56,6 +56,8 @@
             // 
             // cbObjective
             // 
+            this.cbObjective.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbObjective.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbObjective.FormattingEnabled = true;
             this.cbObjective.Location = new System.Drawing.Point(12, 22);
             this.cbObjective.Name = "cbObjective";

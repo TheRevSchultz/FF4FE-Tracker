@@ -415,14 +415,14 @@ namespace FF4FE_Tracker_and_Timer
             Objectives.Add("quest_ribbonaltar", "Conquer the vanilla Ribbon room");
             Objectives.Add("quest_whitealtar", "Conquer the vanilla White Spear altar");
             Objectives.Add("quest_curefever", "Cure the fever with the SandRuby");
-            Objectives.Add("quest_baronbasement", "Defeat the Baron Castle basement throne");
+            Objectives.Add("quest_baronbasement", "Defeat the Baron Castle Basement Throne");
             Objectives.Add("quest_lowerbabil", "Defeat the boss of Lower Bab-il");
             Objectives.Add("quest_mistcave", "Defeat the boss of the Mist Cave");
             Objectives.Add("quest_waterfall", "Defeat the boss of the Waterfall");
             Objectives.Add("quest_baroninn", "Defeat the bosses of Baron Inn");
             Objectives.Add("quest_dwarfcastle", "Defeat the bosses of Dwarf Castle");
-            Objectives.Add("quest_monsterking", "Defeat the king at the Town of Monsters");
-            Objectives.Add("quest_monsterqueen", "Defeat the queen at the Town of Monsters");
+            Objectives.Add("quest_monsterking", "Defeat the King at the Town of Monsters");
+            Objectives.Add("quest_monsterqueen", "Defeat the Queen at the Town of Monsters");
             Objectives.Add("quest_fabul", "Defend Fabul");
             Objectives.Add("quest_supercannon", "Destroy the Super Cannon");
             Objectives.Add("quest_magma", "Drop the Magma Key into the Agart well");
@@ -430,7 +430,7 @@ namespace FF4FE_Tracker_and_Timer
             Objectives.Add("quest_launchfalcon", "Launch the Falcon");
             Objectives.Add("quest_falcon", "Launch the Falcon");
             Objectives.Add("quest_baroncastle", "Liberate Baron Castle");
-            Objectives.Add("quest_toroiatreasury", "Open the Toroia treasury with the Earth Crystal");
+            Objectives.Add("quest_toroiatreasury", "Open the Toroia Treasury with Earth Crystal");
             Objectives.Add("quest_bigwhale", "Raise the Big Whale");
             Objectives.Add("quest_hobs", "Rescue the hostage on Mt. Hobs");
             Objectives.Add("quest_tradepan", "Return the Pan to Yang's wife");
@@ -853,17 +853,17 @@ namespace FF4FE_Tracker_and_Timer
             else if (clbObjectives.Items[e.Index].ToString().Contains("Defeat Zeromus"))
             {
                 BeatZ = true;
-                clbObjectives.Items[e.Index] = clbObjectives.Items[e.Index].ToString() + " Completed: " + lblTimer.Text;
+                clbObjectives.Items[e.Index] = clbObjectives.Items[e.Index].ToString() + " Done: " + lblTimer.Text;
             }
-            else if (clbObjectives.Items[e.Index].ToString().Contains("Completed:"))
+            else if (clbObjectives.Items[e.Index].ToString().Contains("Done:"))
             {
-                int beginOfComplete = clbObjectives.Items[e.Index].ToString().IndexOf(@"Completed:");// + @"Completed:".Length;
+                int beginOfComplete = clbObjectives.Items[e.Index].ToString().IndexOf(@"Done:");
                 string renameObjective = clbObjectives.Items[e.Index].ToString().Substring(0, beginOfComplete);
                 clbObjectives.Items[e.Index] = renameObjective;
             }
             else
             {
-                clbObjectives.Items[e.Index] = clbObjectives.Items[e.Index].ToString() + " Completed: " + lblTimer.Text;
+                clbObjectives.Items[e.Index] = clbObjectives.Items[e.Index].ToString() + " Done: " + lblTimer.Text;
             }
         }
 
