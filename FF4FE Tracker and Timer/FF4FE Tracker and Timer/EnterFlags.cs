@@ -26,6 +26,7 @@ namespace FF4FE_Tracker_and_Timer
             if (PresetFlags.Count.ToString() == "0")
             {
                 PresetFlags.Add("Hidden", "hidden");
+                PresetFlags.Add("Highw4y to the Zemus Zone 2021", "O1:quest_forge/2:quest_cavebahamut/3:boss_wyvern/random:2,gated_quest,boss/req:4/win:crystal Kmain/moon Pkey Cstandard/maybe/start:any/no:fusoya/j:abilities/nodupes/hero Tpro Sstandard/no:j Bstandard/alt:gauntlet/whichburn Nchars/key Etoggle Gnone -kit:freedom -noadamants");
                 PresetFlags.Add("Push B To Jump 2021 Ladder Season 2", "O1:quest_forge/2:quest_tradepink/random:1,quest,char/req:all/win:crystal Kmain/summon/moon Pkey Cstandard/j:abilities Twildish Sstandard Bstandard/alt:gauntlet Nchars Etoggle Glife/sylph -kit:basic -kit2:trap -spoon -supersmith -pushbtojump");
                 PresetFlags.Add("ZZ1 Evolved 2021 Ladder Season 2", "Orandom:5,boss,char/req:4/win:crystal Kmain/summon/moon Pkey Cstandard/distinct:5/nodupes/bye Tstandard/junk Sstandard Bstandard Nchars/key Etoggle/no:jdrops Glife/sylph -kit:cata -supersmith -vanilla:hobs");
                 PresetFlags.Add("Supermarket Sweep 2021 Ladder Season 2", "Orandom:3/req:all/win:crystal Kmain Pshop Crelaxed/j:abilities Twild Swild/free/no:apples Bstandard/whyburn Nnone Etoggle Glife/sylph -spoon");

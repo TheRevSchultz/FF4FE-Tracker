@@ -479,6 +479,7 @@ namespace FF4FE_Tracker_and_Timer
             Flags.Add("start:edge", "Starting Character: Edge");
             Flags.Add("start:fusoya", "Starting Character: FuSoYa");
             Flags.Add("start:cid", "Starting Character: Cid");
+            Flags.Add("start:any", "Starting Character: Any");
             Flags.Add("bye", "Permanently Dismiss Characters");
             Flags.Add("nodupes", "Only Unique Characters");
             Flags.Add("permajoin", "Permanently Joined Characters");
@@ -850,16 +851,16 @@ namespace FF4FE_Tracker_and_Timer
                     clbObjectives.Items[ObjectiveNumber] = ObjectiveName;
                 }
             }
-            else if (clbObjectives.Items[e.Index].ToString().Contains("Defeat Zeromus"))
-            {
-                BeatZ = true;
-                clbObjectives.Items[e.Index] = clbObjectives.Items[e.Index].ToString() + " Done: " + lblTimer.Text;
-            }
             else if (clbObjectives.Items[e.Index].ToString().Contains("Done:"))
             {
                 int beginOfComplete = clbObjectives.Items[e.Index].ToString().IndexOf(@"Done:");
                 string renameObjective = clbObjectives.Items[e.Index].ToString().Substring(0, beginOfComplete);
                 clbObjectives.Items[e.Index] = renameObjective;
+            }
+            else if (clbObjectives.Items[e.Index].ToString().Contains("Defeat Zeromus"))
+            {
+                BeatZ = true;
+                clbObjectives.Items[e.Index] = clbObjectives.Items[e.Index].ToString() + " Done: " + lblTimer.Text;
             }
             else
             {
