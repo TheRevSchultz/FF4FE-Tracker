@@ -9,6 +9,7 @@ namespace FF4FE_Tracker_and_Timer
 {
     public partial class Tracker : Form
     {
+        #region Global Variables
         public Dictionary<string, string> Objectives = new Dictionary<string, string>();
         public Dictionary<string, string> Flags = new Dictionary<string, string>();
         public int ObjectiveCount;
@@ -26,13 +27,14 @@ namespace FF4FE_Tracker_and_Timer
         public static string ObjectiveName = string.Empty;
         public static List<String> tempflags = new List<String>();
         public static string flagSeries = string.Empty;
+        public static List<string> gatedObjectives = new List<string>();
         public static List<string> questObjectives = new List<string>();
         public static List<string> bossObjectives = new List<string>();
         public static List<string> charObjectives = new List<string>();
         public static List<String> tempobjectives = new List<String>();
         public static int randoObjectiveCount;
         public static string flagvalue = string.Empty;
-
+        #endregion
         public Tracker()
         {
             InitializeComponent();
@@ -187,13 +189,14 @@ namespace FF4FE_Tracker_and_Timer
                 List<string> objectiveFlags = new List<string>();
 
                 objectiveFlags = flag.Split(',').ToList();
-                questObjectives = Objectives.Where(d => d.Key.Contains("quest")).ToDictionary(d => d.Key, d => d.Value).Values.ToList();
+                questObjectives = Objectives.Where(d => d.Key.Contains("quest") && !d.Key.Contains("gated")).ToDictionary(d => d.Key, d => d.Value).Values.ToList();
                 charObjectives = Objectives.Where(d => d.Key.Contains("char")).ToDictionary(d => d.Key, d => d.Value).Values.ToList();
                 bossObjectives = Objectives.Where(d => d.Key.Contains("boss")).ToDictionary(d => d.Key, d => d.Value).Values.ToList();
+                gatedObjectives = Objectives.Where(d => d.Key.Contains("gated")).ToDictionary(d => d.Key, d => d.Value).Values.ToList();
 
                 foreach (string objective in objectiveFlags)
                 {
-                    if (objective.Contains("quest"))
+                    if (objective.Contains("quest") && !objective.Contains("gated"))
                     {
                         foreach (string quest in questObjectives)
                         {
@@ -223,7 +226,17 @@ namespace FF4FE_Tracker_and_Timer
                             }
                         }
                     }
-                    else
+                    else if (objective.Contains("gated_quest"))
+                    {
+                        foreach (string gated in gatedObjectives)
+                        {
+                            if (!randoObjectiveList.Contains(gated))
+                            {
+                                randoObjectiveList.Add(gated);
+                            }
+                        }
+                    }
+                    else if (objectiveFlags.Count == 1)
                     {
                         foreach (string quest in questObjectives)
                         {
@@ -445,6 +458,41 @@ namespace FF4FE_Tracker_and_Timer
             Objectives.Add("dkmatter", "Deliver 30 Dark Matters to Kory in Agart");
 
 
+            #endregion
+
+            #region Add Gated Objectives
+            Objectives.Add("gated_music", "Break the Dark Elfs Spell with the TwinHarp");
+            Objectives.Add("gated_burnmist", "Burn village Mist with the Package");
+            Objectives.Add("gated_cavebahamut", "Complete Cave Bahamut");
+            Objectives.Add("gated_magnes", "Complete Cave Magnes");
+            Objectives.Add("gated_giant", "Complete the Giant of Bab-il");
+            Objectives.Add("gated_sealedcave", "Complete the Sealed Cave");
+            Objectives.Add("gated_zot", "Complete the Tower of Zot");
+            Objectives.Add("gated_crystalaltar", "Conquer the vanilla Crystal Sword altar");
+            Objectives.Add("gated_masamunealtar", "Conquer the vanilla Masamune altar");
+            Objectives.Add("gated_murasamealtar", "Conquer the vanilla Murasame altar");
+            Objectives.Add("gated_ribbonaltar", "Conquer the vanilla Ribbon room");
+            Objectives.Add("gated_whitealtar", "Conquer the vanilla White Spear altar");
+            Objectives.Add("gated_curefever", "Cure the fever with the SandRuby");
+            Objectives.Add("gated_baronbasement", "Defeat the Baron Castle Basement Throne");
+            Objectives.Add("gated_lowerbabil", "Defeat the boss of Lower Bab-il");
+            Objectives.Add("gated_dwarfcastle", "Defeat the bosses of Dwarf Castle");
+            Objectives.Add("gated_monsterking", "Defeat the King at the Town of Monsters");
+            Objectives.Add("gated_monsterqueen", "Defeat the Queen at the Town of Monsters");
+            Objectives.Add("gated_supercannon", "Destroy the Super Cannon");
+            Objectives.Add("gated_magma", "Drop the Magma Key into the Agart well");
+            Objectives.Add("gated_forge", "Have Kokkol Forge Legend Sword");
+            Objectives.Add("gated_launchfalcon", "Launch the Falcon");
+            Objectives.Add("gated_falcon", "Launch the Falcon");
+            Objectives.Add("gated_baroncastle", "Liberate Baron Castle");
+            Objectives.Add("gated_toroiatreasury", "Open the Toroia Treasury with Earth Crystal");
+            Objectives.Add("gated_bigwhale", "Raise the Big Whale");
+            Objectives.Add("gated_tradepan", "Return the Pan to Yang's wife");
+            Objectives.Add("gated_tradepink", "Trade away the Pink Tail");
+            Objectives.Add("gated_traderat", "Trade away the Rat Tail");
+            Objectives.Add("gated_unlocksealedcave", "Unlock the Sealed Cave");
+            Objectives.Add("gated_unlocksewer", "Unlock the sewer with the Baron Key");
+            Objectives.Add("gated_wakeyang", "Wake Yang with the Pan");
             #endregion
 
             #region Add Flag Definitions
