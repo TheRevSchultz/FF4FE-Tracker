@@ -301,6 +301,7 @@ namespace FF4FE_Tracker_and_Timer
             List<string> tempConly = new List<string>();
             List<string> parsedConly = new List<string>();
             tempConly = flag.Split(',').ToList();
+            int startPool = 0;
 
             foreach (string only in tempConly)
             {
@@ -308,11 +309,33 @@ namespace FF4FE_Tracker_and_Timer
                 {
                     parsedConly.Add(Flags[only]);
                 }
+                else if (only.Length >= 5 && only.Contains("start:") && !only.Contains("not"))
+                {
+                    startPool = 1;
+                    int flagIndex = only.IndexOf(":");
+                    string tempCharFlag = "start:" + only.Substring(flagIndex + 1);
+                    parsedConly.Add(Flags[tempCharFlag]);
+                }
                 else
                 {
-                    parsedConly.Add(Flags["only:" + only]);
+                    if (startPool == 1 && !only.Contains("not"))
+                    {
+                        int flagIndex = only.IndexOf(":");
+                        string tempCharFlag = "start:" + only.Substring(flagIndex + 1);
+                        parsedConly.Add(Flags[tempCharFlag]);
+                    }
+                    else
+                    {
+                        if (!only.Contains("not"))
+                        {
+                            parsedConly.Add(Flags["only:" + only]);
+                        }
+                        
+                    }
+                    
                 }
             }
+            startPool = 0;
             tempflags.AddRange(parsedConly);
         }
         private void ProcessForRemovedCharacters(string flag)
@@ -320,18 +343,44 @@ namespace FF4FE_Tracker_and_Timer
             List<string> tempCno = new List<string>();
             List<string> parsedCno = new List<string>();
             tempCno = flag.Split(',').ToList();
+            int startExclude = 0;
+            string tempCharFlag = string.Empty;
 
             foreach (string no in tempCno)
             {
+                tempCharFlag = string.Empty;
+                if (no.Length > 5 && no.Substring(0,6) == "start:")
+                {
+                    startExclude = 1;
+                }
+
                 if (no.Length >= 5 && no.Substring(0, 3) == "no:")
                 {
-                    parsedCno.Add(Flags[no]);
+                    tempCharFlag = no;
+                }
+                else if (no.Length >= 6 && (no.Substring(0,6) == "start:" && no.Contains("not")))
+                {
+                    int flagIndex = no.IndexOf(":");
+                    tempCharFlag = "start:" + no.Substring(flagIndex + 1);
+                }
+                else if (no.Length >= 5 && no.Substring(0, 3) == "not")
+                {
+                    int flagIndex = no.IndexOf(":");
+                    tempCharFlag = "start:" + no.Substring(flagIndex + 1);
                 }
                 else
                 {
-                    parsedCno.Add(Flags["no:" + no]);
+                    if (startExclude == 0 && !no.Contains("start:") && no.Substring(0, 3) != "not")
+                    {
+                        tempCharFlag = "no:" + no;
+                    }
+                }
+                if (tempCharFlag != string.Empty)
+                {
+                    parsedCno.Add(Flags[tempCharFlag]);
                 }
             }
+            startExclude = 0;
             tempflags.AddRange(parsedCno);
         }
 
@@ -347,6 +396,11 @@ namespace FF4FE_Tracker_and_Timer
                 tempflags.Add(Flags[vanilla]);
             }
         }
+        else if (flag.Contains("start:"))
+            {
+                ProcessForOnly(flag);
+                ProcessForRemovedCharacters(flag);
+            }
         else
         {
             if (flag != "unsafe")
@@ -515,19 +569,31 @@ namespace FF4FE_Tracker_and_Timer
             Flags.Add("distinct:9", "Limit to 9 Distinct Characters");
             Flags.Add("distinct:10", "Limit to 10 Distinct Characters");
             Flags.Add("distinct:11", "Limit to 11 Distinct Characters");
-            Flags.Add("start:cecil", "Starting Character: Cecil");
-            Flags.Add("start:rosa", "Starting Character: Rosa");
-            Flags.Add("start:kain", "Starting Character: Kain");
-            Flags.Add("start:rydia", "Starting Character: Rydia");
-            Flags.Add("start:palom", "Starting Character: Palom");
-            Flags.Add("start:porom", "Starting Character: Porom");
-            Flags.Add("start:tellah", "Starting Character: Tellah");
-            Flags.Add("start:edward", "Starting Character: Edward");
-            Flags.Add("start:yang", "Starting Character: Yang");
-            Flags.Add("start:edge", "Starting Character: Edge");
-            Flags.Add("start:fusoya", "Starting Character: FuSoYa");
-            Flags.Add("start:cid", "Starting Character: Cid");
-            Flags.Add("start:any", "Starting Character: Any");
+            Flags.Add("start:cecil", "Starting Character May Be: Cecil");
+            Flags.Add("start:rosa", "Starting Character May Be: Rosa");
+            Flags.Add("start:kain", "Starting Character May Be: Kain");
+            Flags.Add("start:rydia", "Starting Character May Be: Rydia");
+            Flags.Add("start:palom", "Starting Character May Be: Palom");
+            Flags.Add("start:porom", "Starting Character May Be: Porom");
+            Flags.Add("start:tellah", "Starting Character May Be: Tellah");
+            Flags.Add("start:edward", "Starting Character May Be: Edward");
+            Flags.Add("start:yang", "Starting Character May Be: Yang");
+            Flags.Add("start:edge", "Starting Character May Be: Edge");
+            Flags.Add("start:fusoya", "Starting Character May Be: FuSoYa");
+            Flags.Add("start:cid", "Starting Character May Be: Cid");
+            Flags.Add("start:any", "Starting Character May Be: Any");
+            Flags.Add("start:not_cecil", "Starting Character Cannot Be: Cecil");
+            Flags.Add("start:not_rosa", "Starting Character Cannot Be: Rosa");
+            Flags.Add("start:not_kain", "Starting Character Cannot Be: Kain");
+            Flags.Add("start:not_rydia", "Starting Character Cannot Be: Rydia");
+            Flags.Add("start:not_palom", "Starting Character Cannot Be: Palom");
+            Flags.Add("start:not_porom", "Starting Character Cannot Be: Porom");
+            Flags.Add("start:not_tellah", "Starting Character Cannot Be: Tellah");
+            Flags.Add("start:not_edward", "Starting Character Cannot Be: Edward");
+            Flags.Add("start:not_yang", "Starting Character Cannot Be: Yang");
+            Flags.Add("start:not_edge", "Starting Character Cannot Be: Edge");
+            Flags.Add("start:not_fusoya", "Starting Character Cannot Be: FuSoYa");
+            Flags.Add("start:not_cid", "Starting Character Cannot Be: Cid");
             Flags.Add("bye", "Permanently Dismiss Characters");
             Flags.Add("nodupes", "Only Unique Characters");
             Flags.Add("permajoin", "Permanently Joined Characters");
