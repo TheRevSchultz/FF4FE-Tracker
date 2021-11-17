@@ -182,7 +182,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(206, 19);
             this.label4.TabIndex = 16;
-            this.label4.Text = "Developed for FF4FE 4.4.0";
+            this.label4.Text = "Developed for FF4FE 4.4.2";
             // 
             // tParseStopwatch
             // 

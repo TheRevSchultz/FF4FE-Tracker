@@ -281,19 +281,35 @@ namespace FF4FE_Tracker_and_Timer
                 {
                     ObjectiveCount = Int32.Parse(flag.Substring(flag.IndexOf(@":") + 1));
                 }
-                lblObjectives.Text = string.Format("Objectives: Require {0} ", flag.Substring(flag.IndexOf(@":") + 1));
             }
             else if (flag == "win:crystal")
             {
                 tempobjectives.Add("Defeat Zeromus");
                 winCondition = "Zeromus";
-                lblObjectives.Text = string.Format("{0} to {1} ", lblObjectives.Text, "get the Crystal and defeat Zeromus.");
+
+                if (!feFlagString.Contains("req") || requireAll)
+                {
+                    lblObjectives.Text = string.Format("Objectives: Require All to get the Crystal and defeat Zeromus.");
+                }
+                else
+                {
+                    lblObjectives.Text = string.Format("Objectives: Require {0} to get the Crystal and defeat Zeromus.", ObjectiveCount.ToString());
+                }
             }
             else if (flag == "win:game")
             {
                 winCondition = "Game";
-                lblObjectives.Text = string.Format("{0} to {1} ", lblObjectives.Text, "win the game.");
+
+                if (!feFlagString.Contains("req") || requireAll)
+                {
+                    lblObjectives.Text = string.Format("Objectives: Require All to Win the Game");
+                }
+                else
+                {
+                    lblObjectives.Text = string.Format("Objectives: Require {0} to Win the Game", ObjectiveCount.ToString());
+                }
             }
+            
         }
 
         private void ProcessForOnly(string flag)

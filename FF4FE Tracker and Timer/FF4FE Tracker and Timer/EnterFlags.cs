@@ -26,6 +26,10 @@ namespace FF4FE_Tracker_and_Timer
             if (PresetFlags.Count.ToString() == "0")
             {
                 PresetFlags.Add("Hidden", "hidden");
+                PresetFlags.Add("FuSoYa in Wario Land 2021 Ladder Season 4", "O1:quest_forge/2:quest_tradepink/3:quest_pass/win:crystal Kmain/trap Pkey Crelaxed/start:fusoya/j:abilities Twildish Sstandard/no:j Bstandard/alt:gauntlet Nchars/key/bosses Etoggle/noexp Gwarp/life/sylph -kit:freedom -supersmith -vanilla:fusoya");
+                PresetFlags.Add("Supermarket Sweep 2021 Ladder Season 4", "Orandom:4,gated_quest,boss/req:3/win:crystal Kmain Pshop Crelaxed/j:abilities Twild Swild/free/no:apples Bstandard/whyburn Nnone Etoggle Glife/sylph -spoon");
+                PresetFlags.Add("Giant % 2021 Ladder Season 4", "Omode:classicgiant/win:game Kmain/moon Pnone Cstandard Twild/no:j Scabins/free Bstandard/whichburn Nnone Etoggle/no:jdrops Gdupe/mp/warp/life/sylph -kit:basic -noadamants -spoon -supersmith");
+                PresetFlags.Add("Fabul Gauntlet Mark II 2021 Ladder Season 4", "Orandom:5,gated_quest/win:crystal Kmain/summon/moon Pkey Cstandard/distinct:7/j:abilities/nodupes/bye Tpro Spro/sell:quarter Bstandard/alt:gauntlet Nchars/key Etoggle Glife/sylph -kit:basic -noadamants");
                 PresetFlags.Add("FuSoYa in Wario Land 2021 Ladder Season 3", "O1:quest_forge/2:quest_tradepink/3:quest_pass/win:crystal Kmain/trap Pkey Crelaxed/start:fusoya/j:abilities Twildish Sstandard/no:j Bstandard/alt:gauntlet Nchars/key/bosses Etoggle/noexp Gwarp/life/sylph -kit:freedom -supersmith -vanilla:fusoya");
                 PresetFlags.Add("Supermarket Sweep 2021 Ladder Season 3", "Orandom:3,gated_quest/req:all/win:crystal Kmain Pshop Crelaxed/j:abilities Twild Swild/free/no:apples Bstandard/whyburn Nnone Etoggle Glife/sylph -spoon");
                 PresetFlags.Add("Giant % 2021 Ladder Season 3", "Omode:classicgiant/win:game Kmain/moon Pnone Cstandard Twild/no:j Scabins/free Bstandard/whichburn Nnone Etoggle/no:jdrops Gdupe/mp/warp/life/sylph -kit:basic -noadamants -spoon -supersmith");
