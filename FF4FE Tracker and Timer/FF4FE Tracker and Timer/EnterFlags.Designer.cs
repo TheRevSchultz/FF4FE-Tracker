@@ -43,6 +43,7 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.txtFlags = new System.Windows.Forms.TextBox();
+            this.btnGenerateSeed = new System.Windows.Forms.Button();
             this.gbHidden.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,7 +54,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
             this.label1.Location = new System.Drawing.Point(13, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(165, 16);
+            this.label1.Size = new System.Drawing.Size(164, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Enter Your Flag String Here";
             // 
@@ -64,7 +65,7 @@
             this.label2.ForeColor = System.Drawing.SystemColors.Control;
             this.label2.Location = new System.Drawing.Point(13, 100);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(150, 16);
+            this.label2.Size = new System.Drawing.Size(149, 16);
             this.label2.TabIndex = 2;
             this.label2.Text = "Choose a Preset Flag Set";
             // 
@@ -113,7 +114,7 @@
             this.label5.ForeColor = System.Drawing.SystemColors.Control;
             this.label5.Location = new System.Drawing.Point(11, 112);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(90, 16);
+            this.label5.Size = new System.Drawing.Size(89, 16);
             this.label5.TabIndex = 8;
             this.label5.Text = "Win Condition";
             // 
@@ -142,7 +143,7 @@
             this.label4.ForeColor = System.Drawing.SystemColors.Control;
             this.label4.Location = new System.Drawing.Point(11, 72);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(99, 16);
+            this.label4.Size = new System.Drawing.Size(98, 16);
             this.label4.TabIndex = 6;
             this.label4.Text = "Required Count";
             // 
@@ -171,7 +172,7 @@
             this.label3.ForeColor = System.Drawing.SystemColors.Control;
             this.label3.Location = new System.Drawing.Point(27, 205);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(102, 16);
+            this.label3.Size = new System.Drawing.Size(101, 16);
             this.label3.TabIndex = 5;
             this.label3.Text = "Objective Count";
             // 
@@ -202,12 +203,23 @@
             this.txtFlags.Size = new System.Drawing.Size(381, 20);
             this.txtFlags.TabIndex = 8;
             // 
+            // btnGenerateSeed
+            // 
+            this.btnGenerateSeed.Location = new System.Drawing.Point(12, 351);
+            this.btnGenerateSeed.Name = "btnGenerateSeed";
+            this.btnGenerateSeed.Size = new System.Drawing.Size(150, 23);
+            this.btnGenerateSeed.TabIndex = 9;
+            this.btnGenerateSeed.Text = "Go Generate a Seed!";
+            this.btnGenerateSeed.UseVisualStyleBackColor = true;
+            this.btnGenerateSeed.Click += new System.EventHandler(this.btnGenerateSeed_Click);
+            // 
             // EnterFlags
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(99)))));
             this.ClientSize = new System.Drawing.Size(411, 388);
+            this.Controls.Add(this.btnGenerateSeed);
             this.Controls.Add(this.txtFlags);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
@@ -243,5 +255,6 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.TextBox txtFlags;
+        private System.Windows.Forms.Button btnGenerateSeed;
     }
 }

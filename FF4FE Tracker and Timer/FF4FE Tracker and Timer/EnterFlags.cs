@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace FF4FE_Tracker_and_Timer
 {
@@ -24,8 +25,25 @@ namespace FF4FE_Tracker_and_Timer
         {
             #region Preset Flags
             if (PresetFlags.Count.ToString() == "0")
-            {
+            { 
                 PresetFlags.Add("Hidden", "hidden");
+                PresetFlags.Add("HTTZZ5 Blue Moon", "O1:boss_golbez/2:boss_fabulgauntlet/random:6,boss/req:7/win:crystal Kmain/summon/moon/force:hook Pkey Crelaxed/noearned/distinct:7/start:any/no:fusoya/j:abilities/nekkie/nodupes Twildish Sstandard Bstandard/alt:gauntlet Etoggle Gwarp/life/sylph/backrow -kit:basic -kit2:freedom -noadamants -spoon -smith:super");
+                PresetFlags.Add("HTTZZ5 Red Moon (Example)", "O1:boss_golbez/2:boss_fabulgauntlet/3:boss_odin/4:boss_elements/5:boss_cpu/6:boss_asura/7:boss_magus/8:boss_mombomb/req:7/win:crystal Kmain/summon/moon/nofree/force:hook Pkey Crelaxed/noearned/distinct:7/start:cecil/no:cecil,edge,fusoya/j:abilities Tpro Sstandard/no:apples Bstandard/alt:gauntlet Etoggle Glife -kit:notdeme -kit2:freedom -noadamants -spoon -smith:super");
+                PresetFlags.Add("Adamant Cup Group Stage", "Orandom:7,tough_quest/req:7/win:crystal Kmain/summon/moon Pkey Cstandard/nofree/restrict:cecil,fusoya/j:abilities/nekkie/party:4 Twildish/maxtier:7 Sstandard Bstandard/alt:gauntlet Etoggle Glife/sylph/backrow -kit:better -spoon");
+                PresetFlags.Add("Adamant Cup Bracket Stage", "Orandom:7,tough_quest/req:7/win:crystal Kmain/summon/moon Pkey Crelaxed/nofree/no:cecil,fusoya/j:abilities/nekkie/party:4 Tpro/maxtier:6 Sstandard/sell:quarter Bstandard/alt:gauntlet Etoggle Glife/sylph -kit:basic -spoon -smith:alt");
+                PresetFlags.Add("Ladder Standard Season 8", "Orandom:7,tough_quest/req:6/win:crystal Kmain/summon/moon Pkey Cstandard/nofree/j:abilities/nekkie Twildish Sstandard Bstandard/alt:gauntlet Etoggle Gwarp/life/sylph/backrow -kit:better -noadamants -spoon");
+                PresetFlags.Add("Giant % Season 8", "Omode:classicgiant/win:game Kmain/moon Pnone Cstandard Twild/no:j Scabins/free Bstandard/whichburn Etoggle/no:jdrops Gdupe/mp/warp/life/sylph/backrow -kit:basic -noadamants -spoon");
+                PresetFlags.Add("Supermarket Sweep Season 8", "Orandom:4,boss/req:3/win:crystal Kmain Pshop Crelaxed/j:abilities Twild Swild/free/no:apples Bstandard/whyburn Etoggle Glife/sylph -spoon");
+                PresetFlags.Add("Falcon % Season 8", "O1:quest_falcon/req:all/win:game Kmain/nofree/force:hook Pnone Cstandard/nofree/no:fusoya/j:abilities Tpro Sstandard/sell:quarter Bstandard/alt:gauntlet Etoggle Gwarp/life/sylph/backrow -kit:basic -noadamants -spoon");
+                PresetFlags.Add("ZZ5 Blue Moon Season 8", "O1:boss_golbez/2:boss_fabulgauntlet/random:6,boss/req:7/win:crystal Kmain/summon/moon/force:hook Pkey Crelaxed/noearned/distinct:7/start:any/no:fusoya/j:abilities/nekkie/nodupes Twildish Sstandard Bstandard/alt:gauntlet Etoggle Gwarp/life/sylph/backrow -kit:basic -kit2:freedom -noadamants -spoon -smith:super");
+                PresetFlags.Add("Ladder Standard Season 7", "Orandom:5,tough_quest/req:4/win:crystal Kmain/summon/moon Pkey Cstandard/nofree/maybe/restrict:cecil,fusoya/j:abilities/nekkie Twildish Sstandard Bstandard/alt:gauntlet Etoggle Gwarp/life/sylph/backrow -kit:better -noadamants -spoon");
+                PresetFlags.Add("Ladder Hard Season 7", "O1:quest_forge/random:4,tough_quest/req:4/win:crystal Kmain/summon/moon/nofree Pkey Cstandard/nofree/maybe/start:any/no:fusoya/j:abilities Tpro Sstandard Bstandard/alt:gauntlet Etoggle Glife/sylph/backrow -kit:basic -noadamants -spoon -smith:alt");
+                PresetFlags.Add("Falcon % Season 7", "O1:quest_falcon/req:all/win:game Kmain/nofree/force:hook Pnone Cstandard/nofree/no:fusoya/j:abilities Tpro Sstandard/sell:quarter Bstandard/alt:gauntlet Etoggle Gwarp/life/sylph/backrow -kit:basic -noadamants -spoon");
+                PresetFlags.Add("FuSoYa In Wario Land Ladder Season 6", "O1:quest_forge/2:quest_tradepink/3:quest_pass/win:crystal Kmain/trap Pkey Crelaxed/start:fusoya/j:abilities Twildish Sstandard/no:j Bstandard/alt:gauntlet Etoggle/noexp Gwarp/life/sylph -kit:freedom -vanilla:fusoya");
+                PresetFlags.Add("Push B To Jump Ladder Season 6", "O1:quest_forge/2:quest_tradepink/random:1,quest,char/req:all/win:crystal Kmain/summon/moon Pkey Cstandard/nofree/j:abilities Twildish Sstandard Bstandard/alt:gauntlet Etoggle Glife/sylph/backrow -kit:basic -kit2:trap -spoon -pushbtojump");
+                PresetFlags.Add("Adamant Cup Group Ladder Season 6", "Orandom:7,tough_quest/req:7/win:crystal Kmain/summon/moon Pkey Cstandard/nofree/restrict:cecil,fusoya/j:abilities/nekkie/party:4 Twildish/maxtier:7 Sstandard Bstandard/alt:gauntlet Etoggle Glife/sylph/backrow -kit:better -spoon");
+                PresetFlags.Add("Adamant Cup Bracket Ladder Season 6", "Orandom:7,tough_quest/req:7/win:crystal Kmain/summon/moon Pkey Crelaxed/nofree/no:cecil,fusoya/j:abilities/nekkie/party:4 Tpro/maxtier:6 Sstandard/sell:quarter Bstandard/alt:gauntlet Etoggle Glife/sylph -kit:basic -spoon -smith:alt");
+                PresetFlags.Add("Supermarket Sweep Ladder Season 6", "Orandom:4,boss/req:3/win:crystal Kmain Pshop Crelaxed/j:abilities Twild Swild/free/no:apples Bstandard/whyburn Etoggle Glife/sylph -spoon");
                 PresetFlags.Add("Supermarket Sweep 2021 Ladder Season 5", "Orandom: 4, gated_quest, boss / req:3 / win:crystal Kmain Pshop Crelaxed / j:abilities Twild Swild / free / no:apples Bstandard / whyburn Nnone Etoggle Glife / sylph - spoon");
                 PresetFlags.Add("FuSoYa In Wario Land 2021 Season 5", "O1:quest_forge/2:quest_tradepink/3:quest_pass/win:crystal Kmain/trap Pkey Crelaxed/start:fusoya/j:abilities Twildish Sstandard/no:j Bstandard/alt:gauntlet Nchars/key/bosses Etoggle/noexp Gwarp/life/sylph -kit:freedom -supersmith -vanilla:fusoya");
                 PresetFlags.Add("CHero 2021 Season 5", "O1:quest_forge/2:quest_toroiatreasury/random:2/req:all/win:crystal Kmain/summon/moon Pkey Crelaxed/no:fusoya/j:abilities/nekkie/hero Tpro Sstandard Bstandard/alt:gauntlet/whichburn Nchars/key Etoggle Glife/sylph -kit:freedom -kit2:random -noadamants");
@@ -157,6 +175,11 @@ namespace FF4FE_Tracker_and_Timer
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnGenerateSeed_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://ff4fe.com/make");
         }
     }
 }

@@ -91,6 +91,10 @@ namespace FF4FE_Tracker_and_Timer
                         {
                             ProcessForRemovedCharacters(flag);
                         }
+                        else if (flag.Length >= 5 && flag.Substring(0, 3) == "restrict:")
+                        {
+                            ProcessForRestricted(flag);
+                        }
                         else
                         {
                             ProcessOtherFlags(flag);
@@ -196,7 +200,7 @@ namespace FF4FE_Tracker_and_Timer
 
                 foreach (string objective in objectiveFlags)
                 {
-                    if (objective.Contains("quest") && !objective.Contains("gated"))
+                    if (objective.Contains("quest") && !objective.Contains("gated") && !objective.Contains("tough"))
                     {
                         foreach (string quest in questObjectives)
                         {
@@ -226,7 +230,7 @@ namespace FF4FE_Tracker_and_Timer
                             }
                         }
                     }
-                    else if (objective.Contains("gated_quest"))
+                    else if (objective.Contains("gated_quest") || objective.Contains("tough_quest"))
                     {
                         foreach (string gated in gatedObjectives)
                         {
@@ -349,6 +353,31 @@ namespace FF4FE_Tracker_and_Timer
                         
                     }
                     
+                }
+            }
+            startPool = 0;
+            tempflags.AddRange(parsedConly);
+        }
+
+        private void ProcessForRestricted(string flag)
+        {
+            List<string> tempRestricted = new List<string>();
+            List<string> parsedConly = new List<string>();
+            tempRestricted = flag.Split(',').ToList();
+            int startPool = 0;
+
+            foreach (string only in tempRestricted)
+            {
+                if (only.Length >= 5 && only.Substring(0, 9) == "restrict:")
+                {
+                    parsedConly.Add(Flags[only]);
+                }
+                else if (only.Length >= 5 && only.Contains("restrict:"))
+                {
+                    startPool = 1;
+                    int flagIndex = only.IndexOf(":");
+                    string tempCharFlag = "restrict:" + only.Substring(flagIndex + 1);
+                    parsedConly.Add(Flags[tempCharFlag]);
                 }
             }
             startPool = 0;
@@ -573,6 +602,9 @@ namespace FF4FE_Tracker_and_Timer
             Flags.Add("Cvanilla", "No Character Randomization");
             Flags.Add("Cstandard", "Standard Character Randomization");
             Flags.Add("Crelaxed", "Relaxed Character Randomization");
+            Flags.Add("Cnoearned", "No Characters At Non-Free Spots");
+            Flags.Add("Cnofree", "No Free Characters");
+            Flags.Add("noearned", "No Characters At Non-Free Spots");
             Flags.Add("maybe", "No Character Appearance Guarantee");
             Flags.Add("distinct:1", "Limit to 1 Distinct Character");
             Flags.Add("distinct:2", "Limit to 2 Distinct Characters");
@@ -610,6 +642,18 @@ namespace FF4FE_Tracker_and_Timer
             Flags.Add("start:not_edge", "Starting Character Cannot Be: Edge");
             Flags.Add("start:not_fusoya", "Starting Character Cannot Be: FuSoYa");
             Flags.Add("start:not_cid", "Starting Character Cannot Be: Cid");
+            Flags.Add("restrict:cecil", "Restricted Character: Cecil");
+            Flags.Add("restrict:rosa", "Restricted Character: Rosa");
+            Flags.Add("restrict:kain", "Restricted Character: Kain");
+            Flags.Add("restrict:rydia", "Restricted Character: Rydia");
+            Flags.Add("restrict:palom", "Restricted Character: Palom");
+            Flags.Add("restrict:porom", "Restricted Character: Porom");
+            Flags.Add("restrict:tellah", "Restricted Character: Tellah");
+            Flags.Add("restrict:edward", "Restricted Character: Edward");
+            Flags.Add("restrict:yang", "Restricted Character: Yang");
+            Flags.Add("restrict:edge", "Restricted Character: Edge");
+            Flags.Add("restrict:fusoya", "Restricted Character: FuSoYa");
+            Flags.Add("restrict:cid", "Restricted Character: Cid");
             Flags.Add("bye", "Permanently Dismiss Characters");
             Flags.Add("nodupes", "Only Unique Characters");
             Flags.Add("permajoin", "Permanently Joined Characters");
@@ -623,18 +667,6 @@ namespace FF4FE_Tracker_and_Timer
             Flags.Add("j:abilities", "Japan Edition Abilities");
             Flags.Add("j:spells, abilities", "Japan Edition Spells and Abilities");
             Flags.Add("j:spells", "Japan Edition Spells");
-            //Flags.Add("cecil", "Exclude Character: Cecil");
-            //Flags.Add("rosa", "Exclude Character: Rosa");
-            //Flags.Add("kain", "Exclude Character: Kain");
-            //Flags.Add("rydia", "Exclude Character: Rydia");
-            //Flags.Add("palom", "Exclude Character: Palom");
-            //Flags.Add("porom", "Exclude Character: Porom");
-            //Flags.Add("tellah", "Exclude Character: Tellah");
-            //Flags.Add("edward", "Exclude Character: Edward");
-            //Flags.Add("yang", "Exclude Character: Yang");
-            //Flags.Add("edge", "Exclude Character: Edge");
-            //Flags.Add("fusoya", "Exclude Character: FuSoYa");
-            //Flags.Add("cid", "Exclude Character: Cid");
             Flags.Add("only:cecil", "Include Character: Cecil");
             Flags.Add("only:rosa", "Include Character: Rosa");
             Flags.Add("only:kain", "Include Character: Kain");
@@ -664,7 +696,12 @@ namespace FF4FE_Tracker_and_Timer
 
             #region Key Item Flags
             Flags.Add("Kvanilla", "Vanilla Key Items");
+            Flags.Add("Knofree", "No Free Key Item");
             Flags.Add("Kmain", "Key Item Randomization");
+            Flags.Add("Kforce:magma", "Guaranteed Magma Route");
+            Flags.Add("Kforce:hook", "Guaranteed Hook Route");
+            Flags.Add("force:magma", "Guaranteed Magma Route");
+            Flags.Add("force:hook", "Guaranteed Hook Route");
             Flags.Add("summon", "Mixed Summon Rewards With Key Items");
             Flags.Add("moon", "Mixed Moon Rewards With Key Items");
             Flags.Add("trap", "Mixed Trasp Chest Rewards With Key Items");
@@ -731,6 +768,7 @@ namespace FF4FE_Tracker_and_Timer
 
             #region Boss Flags
             Flags.Add("Bvanilla", "No Boss Randomization");
+            Flags.Add("Bnofree", "No Free Bosses");
             Flags.Add("Bstandard", "Standard Boss Randomization");
             Flags.Add("alt:gauntlet", "Alternate 5-fight Gauntlet");
             Flags.Add("whyburn", "Disable Wyvern Opening Meganuke");
@@ -770,11 +808,13 @@ namespace FF4FE_Tracker_and_Timer
             Flags.Add("Gsylph", "Allow Sylph MP Glitch");
             Flags.Add("G64", "Allow 64-floor Glitch");
             Flags.Add("Gnone", "No Glitches Allowed");
+            Flags.Add("Gbackrow", "Allow Backrow Glitch");
             Flags.Add("mp", "Allow MP Underflow");
             Flags.Add("warp", "Allow Dwarf Castle Warp");
             Flags.Add("life", "Allow Life Glitch");
             Flags.Add("sylph", "Allow Sylph MP Glitch");
             Flags.Add("64", "Allow 64-floor Glitch");
+            Flags.Add("backrow", "Allow Backrow Glitch");
             #endregion
 
             #region Other Flags
@@ -801,6 +841,8 @@ namespace FF4FE_Tracker_and_Timer
             Flags.Add("-kit:dwarf", "Wizard Hat, Wizarad Robe, 10 Rune Rings, Dwarf Axe, Elixir, and Strength Ring");
             Flags.Add("-kit:eblan", "Icebrand and Blizzard Spear");
             Flags.Add("-kit:99", "99 of a Random Item");
+            Flags.Add("-kit:libra", "50 Bestiaries");
+            Flags.Add("-kit:green", "4 Random FE Green Name Items");
             Flags.Add("-kit:random", "Randomized Starter Kit");
             Flags.Add("-kit2:basic", "Basic Utility Potion Kit");
             Flags.Add("-kit2:better", "Basic kit, Plus Some Combat Items");
@@ -825,6 +867,8 @@ namespace FF4FE_Tracker_and_Timer
             Flags.Add("-kit2:dwarf", "Wizard Hat, Wizarad Robe, 10 Rune Rings, Dwarf Axe, Elixir, and Strength Ring");
             Flags.Add("-kit2:eblan", "Icebrand and Blizzard Spear");
             Flags.Add("-kit2:99", "99 of a Random Item");
+            Flags.Add("-kit2:libra", "50 Bestiaries");
+            Flags.Add("-kit2:green", "4 Random FE Green Name Items");
             Flags.Add("-kit2:random", "Randomized Starter Kit");
             Flags.Add("-kit3:basic", "Basic Utility Potion Kit");
             Flags.Add("-kit3:better", "Basic kit, Plus Some Combat Items");
@@ -849,11 +893,15 @@ namespace FF4FE_Tracker_and_Timer
             Flags.Add("-kit3:dwarf", "Wizard Hat, Wizarad Robe, 10 Rune Rings, Dwarf Axe, Elixir, and Strength Ring");
             Flags.Add("-kit3:eblan", "Icebrand and Blizzard Spear");
             Flags.Add("-kit3:99", "99 of a Random Item");
+            Flags.Add("-kit3:libra", "50 Bestiaries");
+            Flags.Add("-kit3:green", "4 Random FE Green Name Items");
             Flags.Add("-kit3:random", "Randomized Starter Kit");
             Flags.Add("-noadamants", "No Adamant Armors");
             Flags.Add("-nocursed", "No Cursed Rings");
             Flags.Add("-spoon", "Spoon is Equipable by Edward (Spoonward!)");
             Flags.Add("-supersmith", "Kokol Forge Gives FF4 Advance Weapon");
+            Flags.Add("-smith:super", "Kokol Forge Gives FF4 Advance Weapon");
+            Flags.Add("-super:alt", "Kokol Forge Gives Tier 7/8 Weapon");
             Flags.Add("-exp:split", "Split EXP Distribution");
             Flags.Add("-exp:noboost", "No Low-Level EXP Boost");
             Flags.Add("-exp:nonokeybonus", "No EXP Bonus for 10+ Key Items");
@@ -864,6 +912,7 @@ namespace FF4FE_Tracker_and_Timer
             Flags.Add("-vanilla:traps", "Vanilla Trap Chest Locations");
             Flags.Add("-vanilla:giant", "Vanilla Giant (No Exit, Must Complete)");
             Flags.Add("-vanilla:z", "Vanilla Zeromus Sprite");
+            Flags.Add("-vanilla:growup", "Vanilla Summons at Rydia Grow Up");
             Flags.Add("agility", "Vanilla Agility Anchoring");
             Flags.Add("hobs", "Mt. Hobs gives Rydia Fire1");
             Flags.Add("fashion", "Vanilla Character Sprites");
@@ -1110,6 +1159,11 @@ namespace FF4FE_Tracker_and_Timer
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             Process.Start("http://ff4fe.com");
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://wiki.ff4fe.com/doku.php?id=changelog");
         }
     }
 }
