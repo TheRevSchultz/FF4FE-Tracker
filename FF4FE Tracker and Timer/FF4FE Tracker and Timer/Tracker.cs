@@ -72,10 +72,30 @@ namespace FF4FE_Tracker_and_Timer
                 }
                 else
                 {
-                    if( flagSeries == "K" || flagSeries =="B")
+                    if( flagSeries == "K")
                     {
                         ProcessForUnsafe(flag);
-                        ProcessOtherFlags(flag);
+                        if (flag == "nofree")
+                        {
+                            string kFlag = "Knofree";
+                            ProcessOtherFlags(kFlag);
+                        }
+                        else
+                        {
+                            ProcessOtherFlags(flag);
+                        }
+                    }
+                    else if (flagSeries == "B")
+                    {
+                        if (flag == "nofree")
+                        {
+                            string bFlag = "Bnofree";
+                            ProcessOtherFlags(bFlag);
+                        }
+                        else
+                        {
+                            ProcessOtherFlags(flag);
+                        }
                     }
                     else if (flagSeries == "O")
                     {
@@ -481,6 +501,7 @@ namespace FF4FE_Tracker_and_Timer
             Objectives.Add("boss_calbrena", "Defeat Calbrena");
             Objectives.Add("boss_cpu", "Defeat CPU");
             Objectives.Add("boss_dknight", "Defeat Dark Knight Cecil");
+            Objectives.Add("boss_mirrorcecil", "Defeat Dark Knight Cecil");
             Objectives.Add("boss_dmist", "Defeat Mist Dragon");
             Objectives.Add("boss_lugae", "Defeat Dr. Lugae");
             Objectives.Add("boss_elements", "Defeat Elements");
